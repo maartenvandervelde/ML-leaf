@@ -1,0 +1,9 @@
+HOW TO PYTHON
+-------------
+1. Go to https://www.python.org/downloads/
+2. Click 'Download Python 2.7.10'
+3. Go to http://opencv.org/downloads.html
+4. Download version 2.4.9
+5. Extract opencv
+6. Navigate to OpenCV/Build/Python/2.7/x86 
+7. Copy cv2.pyd to Python/Lib/site-packages 
