@@ -1,0 +1,21 @@
+K-Means clustering steps:
+
+1. Gather features into one file.
+There is a separate text file for each image's extracted features.
+Use the bash script concatenateFeatures.sh to concatenate the first N text files into a single file containing all features on one line (featuresN.fts).
+
+2. Clustering.
+Run the clustering algorithm with this command:
+
+python kmeans.py [features file] [K]
+e.g. python kmeans.py features500.fts 50
+
+(where K is the number of clusters = visual words = length of input vector to NN)
+
+3. Output.
+The classifier produces a text file containing the cluster centers (each with a length of 128), as well as a picture of the first two dimensions (really only useful for testing).
+
+4. Generate histograms for images.
+Use generateHistogram.py to create a BoW histogram for an image that can be used as input for a NN:
+
+python generateHistogram.py kmeans_centers_N9605_K10.txt 10874.txt
