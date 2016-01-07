@@ -86,7 +86,7 @@ def load_weights(filedir):
 
 # returns name of class
 def result_to_string(result):
-    classes = [line.rstrip('\n') for line in open(os.path.abspath(os.path.dirname(__file__)) + 'classes.txt')]
+    classes = [line.rstrip('\n') for line in open(os.path.abspath(os.path.dirname(__file__)) + '/' + 'classes.txt')]
     maxIndex = result.index(max(result))
     outputName = classes[maxIndex]
     return outputName
@@ -109,7 +109,7 @@ if __name__ == "__main__":
     #TODO: Laad een 2D matrix (zoals op regel 132 hardcoded) van outputs
     #TODO: Krijg je leaftype voor een bepaalde file(staat hier onder)
     def returnSoort(imagename):
-        f = open(os.path.abspath(os.path.dirname(__file__)) + 'imageclef_testwithgroundtruthxml.csv')
+        f = open(os.path.abspath(os.path.dirname(__file__)) + '/' + 'imageclef_testwithgroundtruthxml.csv')
         csv_f = csv.reader(f)
         for row in csv_f:
             if row[0].find(imagename) > 0:
@@ -117,7 +117,7 @@ if __name__ == "__main__":
                 break
     #TODO: Zet deze leaftype om naar een array [0, 0, 0, 0, 1, 0, 0] (staat hier onder)
     def inputNN(leaftype):
-        classes = [line.rstrip('\n') for line in open(os.path.abspath(os.path.dirname(__file__)) + 'classes.txt')]
+        classes = [line.rstrip('\n') for line in open(os.path.abspath(os.path.dirname(__file__)) + '/' + 'classes.txt')]
         outputArray = []
         for i in xrange(0,len(classes)):
             outputArray.append(0)
