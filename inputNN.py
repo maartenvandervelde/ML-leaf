@@ -1,5 +1,6 @@
 import csv
 import os
+import numpy as np
 import sys
 #maakt van een planten- of boomsoort een array met nullen en een 1 waar het neural network mee om kan gaan
 def inputNN(soort):
@@ -10,6 +11,7 @@ def inputNN(soort):
     index = classes.index(soort)
     replacement = 1
     outputArray[index] = replacement
+    outputArray = np.array(outputArray)
     return outputArray
 
 print inputNN("Acer negundo")
@@ -17,6 +19,7 @@ print inputNN("Acer negundo")
 #vertaalt de output van het neural network naar een planten- of boomsoort
 def outputNN(outputNNArray):
     classes = [line.rstrip('\n') for line in open(os.path.abspath(os.path.dirname(__file__)) + '/' + 'classes.txt')]
+    outputNNArray = outputNNArray.tolist()
     maxIndex = outputNNArray.index(max(outputNNArray))
     outputName = classes[maxIndex]
     return outputName

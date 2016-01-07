@@ -87,6 +87,7 @@ def load_weights(filedir):
 # returns name of class
 def result_to_string(result):
     classes = [line.rstrip('\n') for line in open(os.path.abspath(os.path.dirname(__file__)) + '/' + 'classes.txt')]
+    result = result.tolist()
     maxIndex = result.index(max(result))
     outputName = classes[maxIndex]
     return outputName
@@ -124,6 +125,7 @@ if __name__ == "__main__":
         index = classes.index(leaftype)
         replacement = 1
         outputArray[index] = replacement
+        outputArray = np.array(outputArray)
         return outputArray
 
 
