@@ -25,10 +25,8 @@ print outputNN(inputNN("Acer negundo"))
 
 #returned welke soort bij welke image hoort
 def returnSoort(imagename):
-    f = open("imageclef_testwithgroundtruthxml.csv")
+    f = open(os.path.realpath('imageclef_testwithgroundtruthxml.csv'))
     csv_f = csv.reader(f)
-    path = os.path.realpath('..')
-    print path
     for row in csv_f:
         if row[0].find(imagename) > 0:
             return row.pop()
