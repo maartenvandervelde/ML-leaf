@@ -1,5 +1,6 @@
 import csv
 
+#maakt van een planten- of boomsoort een array met nullen en één een waar het neural network mee om kan gaan
 def inputNN(soort):
     classes = [line.rstrip('\n') for line in open('classes.txt')]
     outputArray = []
@@ -12,7 +13,7 @@ def inputNN(soort):
 
 print inputNN("Acer negundo")
 
-
+#vertaalt de output van het neural network naar een planten- of boomsoort
 def outputNN(outputNNArray):
     classes = [line.rstrip('\n') for line in open('classes.txt')]
     maxIndex = outputNNArray.index(max(outputNNArray))
@@ -21,6 +22,7 @@ def outputNN(outputNNArray):
 
 print outputNN(inputNN("Acer negundo"))
 
+#returned welke soort bij welke image hoort
 def returnSoort(imagename):
     f = open("imageclef_testwithgroundtruthxml.csv")
     csv_f = csv.reader(f)
