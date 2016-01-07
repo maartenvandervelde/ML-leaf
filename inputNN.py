@@ -1,6 +1,6 @@
 import csv
 
-#maakt van een planten- of boomsoort een array met nullen en één een waar het neural network mee om kan gaan
+#maakt van een planten- of boomsoort een array met nullen en een 1 waar het neural network mee om kan gaan
 def inputNN(soort):
     classes = [line.rstrip('\n') for line in open('classes.txt')]
     outputArray = []
