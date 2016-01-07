@@ -1,5 +1,4 @@
-import numpy as np
-
+import csv
 
 def inputNN(soort):
     classes = [line.rstrip('\n') for line in open('classes.txt')]
@@ -21,3 +20,13 @@ def outputNN(outputNNArray):
     return outputName
 
 print outputNN(inputNN("Acer negundo"))
+
+def returnSoort(imagename):
+    f = open("imageclef_testwithgroundtruthxml.csv")
+    csv_f = csv.reader(f)
+    for row in csv_f:
+        if row[0].find(imagename) > 0:
+            return row.pop()
+            break
+
+print returnSoort("10001.jpg")
