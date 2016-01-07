@@ -1,6 +1,7 @@
 ﻿import numpy as np
 import sys
 import glob
+import csv
 
 #The class that constructs a neural network
 class NeuralNetwork():
@@ -80,12 +81,14 @@ def save_weights(name, dir, weights):
 def load_weights(filedir):
     return np.load(filedir)
 
-#TODO: Gegeven een resultaat, vind het maximum and gebruik de index van het maximum om de juiste klasse terug te geven
+# returns name of class
 def result_to_string(result):
-    #index = result.indexOfValue(max(result))
-    #classType = dictionaryOfLeafTypes[index]
-    #return classType
-    return "BLA BLA CLASS"
+    classes = [line.rstrip('\n') for line in open('classes.txt')]
+    maxIndex = result.index(max(result))
+    outputName = classes[maxIndex]
+    return outputName
+
+
 
 if __name__ == "__main__":
     argc = len(sys.argv)
@@ -100,9 +103,27 @@ if __name__ == "__main__":
     testInput = []
     weightsDir = ""
 
-    #TODO: Laad een 2D matrix (zoals op regel 130 hardcoded) van outputs
-    #TODO: Krijg je leaftype voor een bepaalde file
-    #TODO: Zet deze leaftype om naar een array [0, 0, 0, 0, 1, 0, 0]
+    #TODO: Laad een 2D matrix (zoals op regel 132 hardcoded) van outputs
+    #TODO: Krijg je leaftype voor een bepaalde file(staat hier onder)
+    def returnSoort(imagename):
+        f = open("imageclef_testwithgroundtruthxml.csv")
+        csv_f = csv.reader(f)
+        for row in csv_f:
+            if row[0].find(imagename) > 0:
+                return row.pop()
+                break
+    #TODO: Zet deze leaftype om naar een array [0, 0, 0, 0, 1, 0, 0] (staat hier onder)
+    def inputNN(leaftype):
+        classes = [line.rstrip('\n') for line in open('classes.txt')]
+        outputArray = []
+        for i in xrange(0,len(classes)):
+            outputArray.append(0)
+        index = classes.index(leaftype)
+        replacement = 1
+        outputArray[index] = replacement
+        return outputArray
+
+
     if (argc is 4 and sys.argv[1] == "-t"):
         dir = sys.argv[2]
         epochs = int(sys.argv[3])
