@@ -98,10 +98,11 @@ if __name__ == "__main__":
     argc = len(sys.argv)
     np.set_printoptions(threshold=np.nan)
 
-    input = []
+    input = [] 
 
     ready = True
     train = False
+    hasSample = False
 
     epochs = 10000
     testInput = []
@@ -110,12 +111,12 @@ if __name__ == "__main__":
     #TODO: Laad een 2D matrix (zoals op regel 132 hardcoded) van outputs
     #TODO: Krijg je leaftype voor een bepaalde file(staat hier onder)
     def returnSoort(imagename):
-        f = open(os.path.abspath(os.path.dirname(__file__)) + '/' + 'imageclef_testwithgroundtruthxml.csv')
+        f = open(os.path.abspath(os.path.dirname(__file__)) + '/' + 'imageTable.csv')
         csv_f = csv.reader(f)
         for row in csv_f:
             if row[0].find(imagename) > 0:
                 return row.pop()
-                break
+
     #TODO: Zet deze leaftype om naar een array [0, 0, 0, 0, 1, 0, 0] (staat hier onder)
     def inputNN(leaftype):
         classes = [line.rstrip('\n') for line in open(os.path.abspath(os.path.dirname(__file__)) + '/' + 'classes.txt')]
@@ -128,16 +129,18 @@ if __name__ == "__main__":
         outputArray = np.array(outputArray)
         return outputArray
 
-
     if (argc is 4 and sys.argv[1] == "-t"):
         dir = sys.argv[2]
         epochs = int(sys.argv[3])
-
         files = get_filenames(dir);
+        output = [] # <---
         for file in files:
-            input.append(np.loadtxt(dir + '/' + file))
-            #leafTypeString = load_leaftype(dir + '/' + file)
-            #output.append(leaftype_to_array(leafTypeString))
+            leafTypeString = returnSoort(file.replace(".fts", "")) # <---
+            print (file.replace(".fts", ""))
+            if (not leafTypeString is None):
+                hasSample = True
+                input.append(np.loadtxt(dir + '/' + file))
+                output.append(inputNN(leafTypeString)) # <---
 
         input = np.array(input)
         train = True
@@ -152,8 +155,9 @@ if __name__ == "__main__":
         ready = False
 
     if (ready):
-        if (train):
-            output = np.array([[1, 0, 0], [0, 1, 0], [0, 1, 0], [0, 0, 1]]) #Deze regel weghalen als je de ouput kan laden
+        if (train and hasSample):
+
+            #output = np.array([[1, 0, 0], [0, 1, 0], [0, 1, 0], [0, 0, 1]]) #Deze regel weghalen als je de ouput kan laden
 
             nHiddenNodes = int(np.mean(len(input[0]) + len(output[0])))
             nn = NeuralNetwork(nHiddenNodes)
@@ -161,7 +165,7 @@ if __name__ == "__main__":
 
             save_weights("hidden", dir, nn.hiddenWeights)
             save_weights("output", dir, nn.outputWeights)
-        else:
+        elif (not train):
             hiddenWeights = load_weights(weightsDir + "/hidden.weight")
             outputWeights = load_weights(weightsDir + "/output.weight")
 
