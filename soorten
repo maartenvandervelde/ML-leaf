@@ -7,15 +7,22 @@ from xml.dom import minidom
 xmls = []
 xmls =  glob.glob1(os.path.abspath(''),'*.xml')
 soorten = []
+alles = []
+klassen =  []
 
 for xml in xmls:
     xml1 = open(os.path.abspath(os.path.dirname(__file__)) + '/' + xml)
     xml2 = minidom.parse(xml1)
     itemlist =  xml2.getElementsByTagName('ClassId')
     soort = itemlist[0].firstChild.nodeValue
+    alles.append(soort)
     if not soort in soorten:
     	soorten.append(soort)
-print soorten
+for soort in soorten:
+    aantal = alles.count(soort)
+    klassen.append(soort + ' ' + str(aantal))
+
 classes = open('classes.txt', 'w')
-classes.write("\n".join(soorten))
+classes.write("\n".join(klassen))
 classes.close()
+
