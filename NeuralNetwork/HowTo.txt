@@ -1,0 +1,5 @@
+Om te trainen (1000 is aantal epochs kan meer of minder zijn):
+python SimpleNeuralNetwork.py "C:/JeFolderMetFTSTrainBestanden" "C:/JeFolderMetFTSTestBestanden" 1000
+
+Om te testen
+python SimpleNeuralNetwork.py "C:/JeFolderMetFTSBestand/FTSBestand.fts"
