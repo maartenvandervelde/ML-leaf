@@ -5,7 +5,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-import random, sys
+import random, sys, time
 
 class KMeans():
 	def __init__(self, K, file, dim=128):
@@ -26,26 +26,6 @@ class KMeans():
 		keypoints = np.reshape(dat, (-1, self.dim))
 		return keypoints
 
-	def plot_board(self):
-		X = self.X[:,0:2]
-		fig = plt.figure(figsize=(5,5))
-		plt.xlim(-1,1)
-		plt.ylim(-1,1)
-		if self.mu and self.clusters:
-			mu = self.mu
-			clus = self.clusters
-			K = self.K
-			for m, clu in clus.items():
-				cs = plt.cm.spectral(1.*m/self.K)
-				plt.plot(zip(*clus[m])[0], zip(*clus[m])[1], '.', markersize=8, color=cs, alpha=0.5)
-				plt.plot(mu[m][0], mu[m][1], 'o', marker='*', markersize=12, color=cs)
-		else:
-			plt.plot(zip(*X)[0], zip(*X)[1], '.', alpha=0.5)
-		title = 'K-means with random initialization'
-		pars = 'N=%s, K=%s' % (str(self.N), str(self.K))
-		plt.title('\n'.join([pars, title]), fontsize=16)
-		plt.savefig('kmeans_N%s_K%s.png' % (str(self.N), str(self.K)), bbox_inches='tight', dpi=200)
- 
 	def _cluster_points(self):
 		mu = self.mu
 		clusters  = {}
@@ -74,6 +54,7 @@ class KMeans():
 		K = self.K
 		self.oldmu = random.sample(X, K)
 		self.mu = random.sample(X, K)
+		
 		while not self._has_converged():
 			self.oldmu = self.mu
 			# Assign all points in X to clusters
@@ -85,12 +66,19 @@ class KMeans():
 		filename = 'kmeans_centers_N' + str(self.N) + '_K' + str(self.K) + '.txt'
 		np.savetxt(filename, self.mu)
 		print 'Cluster centers written to', filename
-		
-	
-if __name__ == '__main__':
-	file = sys.argv[1]
-	k = int(sys.argv[2])
+		return filename
+
+def main(argv):
+	file = argv[0]
+	k = int(argv[1])
+	t_start = time.time()
 	kmeans = KMeans(k, file)
 	kmeans.find_centers()
-	kmeans.write_centers()
-	kmeans.plot_board()
+	centers_file = kmeans.write_centers()
+	t_end = time.time()
+	t_elapsed = t_end - t_start
+	print "Time elapsed during K-Means clustering: " + str(t_elapsed) + " seconds."	
+	return centers_file
+	
+if __name__ == '__main__':
+	main(sys.argv[1:])
