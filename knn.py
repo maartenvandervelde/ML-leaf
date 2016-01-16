@@ -10,7 +10,7 @@ import sys, os, glob, csv
 # Arguments:
 # 	- train_dir (required)	: directory containing training *.hst files.
 #	- test_dir (required)	: directory containing testing *.hst files.
-#	- K (required)			: number of neighbours used in KNN classification.
+#	- max_K (required)		: KNN classification will report accuracy for K = 1 up to K = max_K.
 #
 # Example call: "python knn.py train test 3".
 #
@@ -54,8 +54,12 @@ class KnnClassifier():
 	def classify(self, testdir):
 		testfiles = get_filenames(testdir)
 		
+		print 'Classifying {} test items...'.format(len(testfiles))
+		
 		correct = 0
 		count = 0
+		
+		classifications = []
 		
 		for file in testfiles:
 			leafTypeString = get_leaftype(os.path.splitext(file)[0]) 
@@ -73,19 +77,42 @@ class KnnClassifier():
 				
 				class_votes = distances_sorted[0:self.K,-1]
 				
-				# Assign majority class to test item
-				test_item_class = Counter(class_votes).most_common(1)[0][0]
+				# Store votes together with the actual class
+				classifications.append(np.insert(class_votes, 0, leafTypeString))
 				
-				# Check correctness
-				if (leafTypeString == test_item_class):
-					correct += 1
-				#else:
-					#print file + ' classified incorrectly, as ' + test_item_class + ' instead of ' + leafTypeString				
 			else:
 				print 'Warning! Unlabeled item in test data, will be ignored: ' + file
 		
-		print 'Classification of {} test items finished with accuracy of {}%.'.format(count, float(correct)*100/count)
+		return np.array(classifications)
 		
+		
+	# Calculates and prints accuracy for a range of K's, given an array of classifications
+	def print_accuracy(self, classifications, lower_K, upper_K):
+		count = len(classifications)
+		accuracies = []
+		
+		for i in xrange(lower_K + 1, upper_K + 2):
+			correct = 0
+			
+			for row in classifications:
+				class_real = row[0]
+
+				# Assign majority class to item using the i nearest neighbours' votes 
+				class_vote = Counter(row[1:i]).most_common(1)[0][0]
+				
+				if (class_real == class_vote):
+					correct += 1
+			
+			accuracy = float(correct) * 100 / count
+			accuracies.append(accuracy)
+			
+			print 'Accuracy at K = {}: {}%.'.format(i-1, accuracy)
+		
+		# Report highest accuracy
+		max_ind = np.argmax(accuracies)
+		max_acc = accuracies[max_ind]
+		print 'Highest classification accuracy is {}% at K = {}.'.format(max_acc, max_ind + 1)
+			
 #Get all *.hst in a specified folder
 def get_filenames(dir):
 	files = []
@@ -108,16 +135,21 @@ def main(argv):
 		print '\nWarning: incorrect argument(s) to knn.py. Expected arguments:\n\n' \
 		'\t- train_dir (required)\t: directory containing training *.hst files.\n' \
 		'\t- test_dir (required)\t: directory containing testing *.hst files.\n'\
-		'\t- K (required)\t\t: number of neighbours used in KNN classification.\n'
+		'\t- max_K (required)\t: KNN classification will report accuracy for K = 1 up to K = max_K.\n'
 		sys.exit(1)
 	
 	traindir = argv[0]
 	testdir = argv[1]
 	K = int(argv[2])
 	
+	# Load training data
 	KNN = KnnClassifier(traindir, K)
 	
-	KNN.classify(testdir)
+	# Classify test data
+	classifications = KNN.classify(testdir)
+	
+	# Report accuracy
+	KNN.print_accuracy(classifications, 1, K)
 		
 if __name__ == '__main__':
 	main(sys.argv[1:])
