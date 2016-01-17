@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -----------------------------------------------------------------------------
 # Multi-layer perceptron
 # Copyright (C) 2011  Nicolas P. Rougier
