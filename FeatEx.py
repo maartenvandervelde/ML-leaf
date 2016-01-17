@@ -14,7 +14,7 @@ def update_progress(current, total, maxNumKeypoints):
             print('Info: No maximum number of keypoints was specified so there may be discrepancies.')
 
 def write_to_file(name, dir, data):
-    file = open(dir + '/' + name + '.txt', 'w')
+    file = open(dir + '/' + name + '.fts', 'w')
     temp_data = str(data).strip('[]').replace('.', '')
     clean_data = " ".join(temp_data.split())
     file.write(clean_data)
