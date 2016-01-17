@@ -1,0 +1,493 @@
+===========
+ KNN TESTS
+===========
+
+1.
+Date: 17/01/2016
+
+== Data ==
+Training folder: 			imageclef/train ('photographs' and 'pseudoscans' removed)
+Testing folder: 			imageclef/test ('photographs' and 'pseudoscans' removed)
+SIFT features per image: 	100
+
+== Bag of Words ==
+Files used for clustering:	100/4870 (9612 keypoints)
+Number of clusters:			100
+
+== KNN results ==
+Accuracy at K = 1: 22.7272727273%.
+Accuracy at K = 2: 21.7613636364%.
+Accuracy at K = 3: 20.9659090909%.
+Accuracy at K = 4: 22.2159090909%.
+Accuracy at K = 5: 22.8977272727%.
+Accuracy at K = 6: 22.2727272727%.
+Accuracy at K = 7: 22.2159090909%.
+Accuracy at K = 8: 22.3295454545%.
+Accuracy at K = 9: 22.1590909091%.
+Accuracy at K = 10: 22.0454545455%.
+Accuracy at K = 11: 21.9318181818%.
+Accuracy at K = 12: 21.7045454545%.
+Accuracy at K = 13: 21.4772727273%.
+Accuracy at K = 14: 21.3636363636%.
+Accuracy at K = 15: 21.6477272727%.
+Accuracy at K = 16: 21.7613636364%.
+Accuracy at K = 17: 21.5909090909%.
+Accuracy at K = 18: 21.1363636364%.
+Accuracy at K = 19: 20.3977272727%.
+Accuracy at K = 20: 20.625%.
+Accuracy at K = 21: 20.7954545455%.
+Accuracy at K = 22: 20.625%.
+Accuracy at K = 23: 20.5113636364%.
+Accuracy at K = 24: 20.3977272727%.
+Accuracy at K = 25: 20.1704545455%.
+Accuracy at K = 26: 20.2272727273%.
+Accuracy at K = 27: 19.9431818182%.
+Accuracy at K = 28: 19.7727272727%.
+Accuracy at K = 29: 19.6590909091%.
+Accuracy at K = 30: 19.6022727273%.
+Accuracy at K = 31: 19.6590909091%.
+Accuracy at K = 32: 19.7159090909%.
+Accuracy at K = 33: 19.6022727273%.
+Accuracy at K = 34: 19.6590909091%.
+Accuracy at K = 35: 19.7159090909%.
+Accuracy at K = 36: 19.4318181818%.
+Accuracy at K = 37: 19.375%.
+Accuracy at K = 38: 19.5454545455%.
+Accuracy at K = 39: 19.3181818182%.
+Accuracy at K = 40: 19.2613636364%.
+Accuracy at K = 41: 19.375%.
+Accuracy at K = 42: 19.4886363636%.
+Accuracy at K = 43: 19.0909090909%.
+Accuracy at K = 44: 18.9772727273%.
+Accuracy at K = 45: 18.6931818182%.
+Accuracy at K = 46: 18.6931818182%.
+Accuracy at K = 47: 18.6931818182%.
+Accuracy at K = 48: 18.8068181818%.
+Accuracy at K = 49: 18.8068181818%.
+Accuracy at K = 50: 18.6931818182%.
+Accuracy at K = 51: 18.5795454545%.
+Accuracy at K = 52: 18.5795454545%.
+Accuracy at K = 53: 18.6363636364%.
+Accuracy at K = 54: 18.6931818182%.
+Accuracy at K = 55: 18.8068181818%.
+Accuracy at K = 56: 18.75%.
+Accuracy at K = 57: 18.6931818182%.
+Accuracy at K = 58: 18.8068181818%.
+Accuracy at K = 59: 18.6931818182%.
+Accuracy at K = 60: 18.5795454545%.
+Accuracy at K = 61: 18.75%.
+Accuracy at K = 62: 18.3522727273%.
+Accuracy at K = 63: 18.5795454545%.
+Accuracy at K = 64: 18.3522727273%.
+Accuracy at K = 65: 18.2954545455%.
+Accuracy at K = 66: 18.2386363636%.
+Accuracy at K = 67: 18.2386363636%.
+Accuracy at K = 68: 18.0113636364%.
+Accuracy at K = 69: 18.0113636364%.
+Accuracy at K = 70: 17.6136363636%.
+Accuracy at K = 71: 17.6136363636%.
+Accuracy at K = 72: 17.6704545455%.
+Accuracy at K = 73: 17.6136363636%.
+Accuracy at K = 74: 17.5568181818%.
+Accuracy at K = 75: 17.6136363636%.
+Accuracy at K = 76: 17.4431818182%.
+Accuracy at K = 77: 17.3295454545%.
+Accuracy at K = 78: 17.2727272727%.
+Accuracy at K = 79: 17.1590909091%.
+Accuracy at K = 80: 16.9318181818%.
+Accuracy at K = 81: 17.0454545455%.
+Accuracy at K = 82: 16.9318181818%.
+Accuracy at K = 83: 16.875%.
+Accuracy at K = 84: 16.6477272727%.
+Accuracy at K = 85: 16.7613636364%.
+Accuracy at K = 86: 16.9318181818%.
+Accuracy at K = 87: 16.9318181818%.
+Accuracy at K = 88: 16.9318181818%.
+Accuracy at K = 89: 16.7613636364%.
+Accuracy at K = 90: 16.5909090909%.
+Accuracy at K = 91: 16.5909090909%.
+Accuracy at K = 92: 16.7045454545%.
+Accuracy at K = 93: 16.7613636364%.
+Accuracy at K = 94: 16.6477272727%.
+Accuracy at K = 95: 16.5340909091%.
+Accuracy at K = 96: 16.1931818182%.
+Accuracy at K = 97: 16.25%.
+Accuracy at K = 98: 16.3068181818%.
+Accuracy at K = 99: 16.1363636364%.
+Accuracy at K = 100: 16.0795454545%.
+Highest classification accuracy is 22.8977272727% at K = 5.
+
+
+###
+
+
+2. Reduce number of clusters to 50.
+Date: 17/01/2016
+
+== Data ==
+Training folder: 			imageclef/train ('photographs' and 'pseudoscans' removed)
+Testing folder: 			imageclef/test ('photographs' and 'pseudoscans' removed)
+SIFT features per image: 	100
+
+== Bag of Words ==
+Files used for clustering:	100/4870 (9736 keypoints)
+Number of clusters:			50
+
+== KNN results ==
+Accuracy at K = 1: 18.75%.
+Accuracy at K = 2: 17.4431818182%.
+Accuracy at K = 3: 18.4659090909%.
+Accuracy at K = 4: 18.6363636364%.
+Accuracy at K = 5: 19.0340909091%.
+Accuracy at K = 6: 19.0340909091%.
+Accuracy at K = 7: 19.2045454545%.
+Accuracy at K = 8: 19.4886363636%.
+Accuracy at K = 9: 18.8636363636%.
+Accuracy at K = 10: 18.8636363636%.
+Accuracy at K = 11: 19.0340909091%.
+Accuracy at K = 12: 19.0340909091%.
+Accuracy at K = 13: 18.6931818182%.
+Accuracy at K = 14: 18.8068181818%.
+Accuracy at K = 15: 18.8636363636%.
+Accuracy at K = 16: 18.8068181818%.
+Accuracy at K = 17: 18.5795454545%.
+Accuracy at K = 18: 19.0909090909%.
+Accuracy at K = 19: 19.375%.
+Accuracy at K = 20: 19.0909090909%.
+Accuracy at K = 21: 18.8636363636%.
+Accuracy at K = 22: 18.8068181818%.
+Accuracy at K = 23: 18.75%.
+Accuracy at K = 24: 18.6931818182%.
+Accuracy at K = 25: 18.8636363636%.
+Accuracy at K = 26: 18.75%.
+Accuracy at K = 27: 18.3522727273%.
+Accuracy at K = 28: 18.0681818182%.
+Accuracy at K = 29: 18.2386363636%.
+Accuracy at K = 30: 18.4659090909%.
+Accuracy at K = 31: 18.4090909091%.
+Accuracy at K = 32: 18.4659090909%.
+Accuracy at K = 33: 18.3522727273%.
+Accuracy at K = 34: 18.5795454545%.
+Accuracy at K = 35: 18.125%.
+Accuracy at K = 36: 18.0681818182%.
+Accuracy at K = 37: 17.8977272727%.
+Accuracy at K = 38: 17.7840909091%.
+Accuracy at K = 39: 17.6704545455%.
+Accuracy at K = 40: 17.9545454545%.
+Accuracy at K = 41: 17.9545454545%.
+Accuracy at K = 42: 17.6704545455%.
+Accuracy at K = 43: 17.6704545455%.
+Accuracy at K = 44: 17.6136363636%.
+Accuracy at K = 45: 17.3863636364%.
+Accuracy at K = 46: 17.3863636364%.
+Accuracy at K = 47: 17.4431818182%.
+Accuracy at K = 48: 16.9886363636%.
+Accuracy at K = 49: 17.2727272727%.
+Accuracy at K = 50: 17.1022727273%.
+Accuracy at K = 51: 17.0454545455%.
+Accuracy at K = 52: 16.9886363636%.
+Accuracy at K = 53: 16.9886363636%.
+Accuracy at K = 54: 16.9886363636%.
+Accuracy at K = 55: 16.8181818182%.
+Accuracy at K = 56: 16.875%.
+Accuracy at K = 57: 16.8181818182%.
+Accuracy at K = 58: 16.875%.
+Accuracy at K = 59: 16.9318181818%.
+Accuracy at K = 60: 16.9886363636%.
+Accuracy at K = 61: 16.875%.
+Accuracy at K = 62: 16.7613636364%.
+Accuracy at K = 63: 16.7613636364%.
+Accuracy at K = 64: 16.5340909091%.
+Accuracy at K = 65: 16.3636363636%.
+Accuracy at K = 66: 16.3068181818%.
+Accuracy at K = 67: 16.0795454545%.
+Accuracy at K = 68: 16.1931818182%.
+Accuracy at K = 69: 16.1931818182%.
+Accuracy at K = 70: 16.1363636364%.
+Accuracy at K = 71: 16.0227272727%.
+Accuracy at K = 72: 15.9659090909%.
+Accuracy at K = 73: 15.8522727273%.
+Accuracy at K = 74: 15.9090909091%.
+Accuracy at K = 75: 15.9090909091%.
+Accuracy at K = 76: 15.8522727273%.
+Accuracy at K = 77: 15.9090909091%.
+Accuracy at K = 78: 15.9090909091%.
+Accuracy at K = 79: 16.1363636364%.
+Accuracy at K = 80: 16.0227272727%.
+Accuracy at K = 81: 15.9090909091%.
+Accuracy at K = 82: 16.0795454545%.
+Accuracy at K = 83: 15.9090909091%.
+Accuracy at K = 84: 15.9659090909%.
+Accuracy at K = 85: 15.7386363636%.
+Accuracy at K = 86: 15.9090909091%.
+Accuracy at K = 87: 15.7954545455%.
+Accuracy at K = 88: 15.7954545455%.
+Accuracy at K = 89: 15.6818181818%.
+Accuracy at K = 90: 15.5681818182%.
+Accuracy at K = 91: 15.4545454545%.
+Accuracy at K = 92: 15.3977272727%.
+Accuracy at K = 93: 15.6818181818%.
+Accuracy at K = 94: 15.625%.
+Accuracy at K = 95: 15.625%.
+Accuracy at K = 96: 15.5113636364%.
+Accuracy at K = 97: 15.2840909091%.
+Accuracy at K = 98: 15.3409090909%.
+Accuracy at K = 99: 15.2272727273%.
+Accuracy at K = 100: 15.4545454545%.
+Highest classification accuracy is 19.4886363636% at K = 8.
+
+###
+
+3. Increase number of clusters to 200.
+Date: 17/01/2016
+
+== Data ==
+Training folder: 			imageclef/train ('photographs' and 'pseudoscans' removed)
+Testing folder: 			imageclef/test ('photographs' and 'pseudoscans' removed)
+SIFT features per image: 	100
+
+== Bag of Words ==
+Files used for clustering:	100/4870 (9454 keypoints)
+Number of clusters:			200
+
+== KNN results ==
+Accuracy at K = 1: 21.3068181818%.
+Accuracy at K = 2: 19.7159090909%.
+Accuracy at K = 3: 20.2840909091%.
+Accuracy at K = 4: 20.2272727273%.
+Accuracy at K = 5: 20.7954545455%.
+Accuracy at K = 6: 20.3977272727%.
+Accuracy at K = 7: 20.625%.
+Accuracy at K = 8: 20.6818181818%.
+Accuracy at K = 9: 20.8522727273%.
+Accuracy at K = 10: 21.0795454545%.
+Accuracy at K = 11: 21.0227272727%.
+Accuracy at K = 12: 20.7954545455%.
+Accuracy at K = 13: 20.1704545455%.
+Accuracy at K = 14: 19.9431818182%.
+Accuracy at K = 15: 19.9431818182%.
+Accuracy at K = 16: 19.7159090909%.
+Accuracy at K = 17: 19.8295454545%.
+Accuracy at K = 18: 19.8863636364%.
+Accuracy at K = 19: 19.375%.
+Accuracy at K = 20: 19.2045454545%.
+Accuracy at K = 21: 19.375%.
+Accuracy at K = 22: 19.0909090909%.
+Accuracy at K = 23: 18.9204545455%.
+Accuracy at K = 24: 18.6931818182%.
+Accuracy at K = 25: 18.6931818182%.
+Accuracy at K = 26: 18.8068181818%.
+Accuracy at K = 27: 18.8068181818%.
+Accuracy at K = 28: 18.4659090909%.
+Accuracy at K = 29: 18.6363636364%.
+Accuracy at K = 30: 18.5795454545%.
+Accuracy at K = 31: 18.4659090909%.
+Accuracy at K = 32: 18.6363636364%.
+Accuracy at K = 33: 18.75%.
+Accuracy at K = 34: 18.6931818182%.
+Accuracy at K = 35: 18.8068181818%.
+Accuracy at K = 36: 18.8068181818%.
+Accuracy at K = 37: 18.75%.
+Accuracy at K = 38: 18.8068181818%.
+Accuracy at K = 39: 18.5227272727%.
+Accuracy at K = 40: 18.8636363636%.
+Accuracy at K = 41: 18.8068181818%.
+Accuracy at K = 42: 18.8068181818%.
+Accuracy at K = 43: 18.8068181818%.
+Accuracy at K = 44: 18.6931818182%.
+Accuracy at K = 45: 18.8068181818%.
+Accuracy at K = 46: 18.6931818182%.
+Accuracy at K = 47: 18.6363636364%.
+Accuracy at K = 48: 18.5227272727%.
+Accuracy at K = 49: 18.4090909091%.
+Accuracy at K = 50: 18.4090909091%.
+Accuracy at K = 51: 18.5227272727%.
+Accuracy at K = 52: 18.4659090909%.
+Accuracy at K = 53: 18.0113636364%.
+Accuracy at K = 54: 17.8977272727%.
+Accuracy at K = 55: 17.8977272727%.
+Accuracy at K = 56: 17.8977272727%.
+Accuracy at K = 57: 18.0681818182%.
+Accuracy at K = 58: 17.7272727273%.
+Accuracy at K = 59: 17.7840909091%.
+Accuracy at K = 60: 17.8409090909%.
+Accuracy at K = 61: 17.8409090909%.
+Accuracy at K = 62: 18.0113636364%.
+Accuracy at K = 63: 17.9545454545%.
+Accuracy at K = 64: 17.8977272727%.
+Accuracy at K = 65: 17.9545454545%.
+Accuracy at K = 66: 18.0681818182%.
+Accuracy at K = 67: 18.1818181818%.
+Accuracy at K = 68: 18.0681818182%.
+Accuracy at K = 69: 18.1818181818%.
+Accuracy at K = 70: 18.1818181818%.
+Accuracy at K = 71: 17.7840909091%.
+Accuracy at K = 72: 17.9545454545%.
+Accuracy at K = 73: 17.7272727273%.
+Accuracy at K = 74: 17.8977272727%.
+Accuracy at K = 75: 17.7840909091%.
+Accuracy at K = 76: 17.6704545455%.
+Accuracy at K = 77: 17.6704545455%.
+Accuracy at K = 78: 17.7272727273%.
+Accuracy at K = 79: 17.8977272727%.
+Accuracy at K = 80: 17.8977272727%.
+Accuracy at K = 81: 17.7272727273%.
+Accuracy at K = 82: 17.5568181818%.
+Accuracy at K = 83: 17.5%.
+Accuracy at K = 84: 17.3863636364%.
+Accuracy at K = 85: 17.5568181818%.
+Accuracy at K = 86: 17.3863636364%.
+Accuracy at K = 87: 17.2727272727%.
+Accuracy at K = 88: 17.2727272727%.
+Accuracy at K = 89: 17.4431818182%.
+Accuracy at K = 90: 17.3863636364%.
+Accuracy at K = 91: 17.1590909091%.
+Accuracy at K = 92: 17.0454545455%.
+Accuracy at K = 93: 17.1022727273%.
+Accuracy at K = 94: 17.2159090909%.
+Accuracy at K = 95: 16.9886363636%.
+Accuracy at K = 96: 17.0454545455%.
+Accuracy at K = 97: 16.9886363636%.
+Accuracy at K = 98: 16.9318181818%.
+Accuracy at K = 99: 16.9886363636%.
+Accuracy at K = 100: 16.875%.
+Highest classification accuracy is 21.3068181818% at K = 1.
+
+
+###
+
+
+4. More files used for clustering.
+Date: 17/01/2016
+
+== Data ==
+Training folder: 			imageclef/train ('photographs' and 'pseudoscans' removed)
+Testing folder: 			imageclef/test ('photographs' and 'pseudoscans' removed)
+SIFT features per image: 	100
+
+== Bag of Words ==
+Files used for clustering:	200/4870 (19305 keypoints; 32 min)
+Number of clusters:			100
+
+== KNN results ==
+Accuracy at K = 1: 22.3295454545%.
+Accuracy at K = 2: 20.3977272727%.
+Accuracy at K = 3: 21.3068181818%.
+Accuracy at K = 4: 21.9886363636%.
+Accuracy at K = 5: 22.6704545455%.
+Accuracy at K = 6: 22.3295454545%.
+Accuracy at K = 7: 21.875%.
+Accuracy at K = 8: 22.2727272727%.
+Accuracy at K = 9: 21.9886363636%.
+Accuracy at K = 10: 21.25%.
+Accuracy at K = 11: 21.3636363636%.
+Accuracy at K = 12: 20.625%.
+Accuracy at K = 13: 21.0795454545%.
+Accuracy at K = 14: 21.1931818182%.
+Accuracy at K = 15: 20.9659090909%.
+Accuracy at K = 16: 21.0795454545%.
+Accuracy at K = 17: 20.4545454545%.
+Accuracy at K = 18: 20.625%.
+Accuracy at K = 19: 20.625%.
+Accuracy at K = 20: 20.9090909091%.
+Accuracy at K = 21: 20.5113636364%.
+Accuracy at K = 22: 20.2272727273%.
+Accuracy at K = 23: 20.0%.
+Accuracy at K = 24: 19.8295454545%.
+Accuracy at K = 25: 20.0%.
+Accuracy at K = 26: 20.0%.
+Accuracy at K = 27: 20.1136363636%.
+Accuracy at K = 28: 19.8863636364%.
+Accuracy at K = 29: 19.6022727273%.
+Accuracy at K = 30: 19.8295454545%.
+Accuracy at K = 31: 19.4886363636%.
+Accuracy at K = 32: 19.3181818182%.
+Accuracy at K = 33: 19.0909090909%.
+Accuracy at K = 34: 18.9772727273%.
+Accuracy at K = 35: 19.0340909091%.
+Accuracy at K = 36: 18.9204545455%.
+Accuracy at K = 37: 19.2045454545%.
+Accuracy at K = 38: 18.9772727273%.
+Accuracy at K = 39: 18.8636363636%.
+Accuracy at K = 40: 19.0909090909%.
+Accuracy at K = 41: 18.8636363636%.
+Accuracy at K = 42: 18.9204545455%.
+Accuracy at K = 43: 19.0340909091%.
+Accuracy at K = 44: 18.75%.
+Accuracy at K = 45: 18.5227272727%.
+Accuracy at K = 46: 18.4659090909%.
+Accuracy at K = 47: 18.4090909091%.
+Accuracy at K = 48: 18.6931818182%.
+Accuracy at K = 49: 18.6363636364%.
+Accuracy at K = 50: 18.8068181818%.
+Accuracy at K = 51: 18.6931818182%.
+Accuracy at K = 52: 18.5227272727%.
+Accuracy at K = 53: 18.3522727273%.
+Accuracy at K = 54: 18.3522727273%.
+Accuracy at K = 55: 18.3522727273%.
+Accuracy at K = 56: 18.1818181818%.
+Accuracy at K = 57: 17.8977272727%.
+Accuracy at K = 58: 18.0681818182%.
+Accuracy at K = 59: 17.8409090909%.
+Accuracy at K = 60: 17.7840909091%.
+Accuracy at K = 61: 17.7840909091%.
+Accuracy at K = 62: 17.5568181818%.
+Accuracy at K = 63: 17.6136363636%.
+Accuracy at K = 64: 17.6136363636%.
+Accuracy at K = 65: 17.7272727273%.
+Accuracy at K = 66: 17.7840909091%.
+Accuracy at K = 67: 17.6136363636%.
+Accuracy at K = 68: 17.3295454545%.
+Accuracy at K = 69: 17.1590909091%.
+Accuracy at K = 70: 17.2159090909%.
+Accuracy at K = 71: 17.2727272727%.
+Accuracy at K = 72: 17.3295454545%.
+Accuracy at K = 73: 16.9886363636%.
+Accuracy at K = 74: 16.9886363636%.
+Accuracy at K = 75: 17.1590909091%.
+Accuracy at K = 76: 17.2159090909%.
+Accuracy at K = 77: 17.2727272727%.
+Accuracy at K = 78: 17.2159090909%.
+Accuracy at K = 79: 17.3295454545%.
+Accuracy at K = 80: 17.2727272727%.
+Accuracy at K = 81: 17.2159090909%.
+Accuracy at K = 82: 17.2727272727%.
+Accuracy at K = 83: 17.2727272727%.
+Accuracy at K = 84: 17.3295454545%.
+Accuracy at K = 85: 17.1022727273%.
+Accuracy at K = 86: 17.0454545455%.
+Accuracy at K = 87: 17.3295454545%.
+Accuracy at K = 88: 17.0454545455%.
+Accuracy at K = 89: 16.9886363636%.
+Accuracy at K = 90: 16.9318181818%.
+Accuracy at K = 91: 16.9318181818%.
+Accuracy at K = 92: 16.875%.
+Accuracy at K = 93: 16.8181818182%.
+Accuracy at K = 94: 16.8181818182%.
+Accuracy at K = 95: 16.875%.
+Accuracy at K = 96: 16.9886363636%.
+Accuracy at K = 97: 16.9318181818%.
+Accuracy at K = 98: 16.5909090909%.
+Accuracy at K = 99: 16.5909090909%.
+Accuracy at K = 100: 16.6477272727%.
+Highest classification accuracy is 22.6704545455% at K = 5.
+
+=============
+
+Full test script:
+
+SIFT feature extraction:
+python FeatEx.py imageclef/train 100
+python FeatEx.py imageclef/test 100
+
+Deleting 'photographs':
+python delete.py imageclef/train
+python delete.py imageclef/test
+
+Bag of words:
+python bagOfWords.py imageclef/train imageclef/test 100 100
+
+KNN:
+python knn.py imageclef/train imageclef/test 100
+
+=============
