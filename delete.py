@@ -40,14 +40,20 @@ def main(argv):
 		itemlist =  xml2.getElementsByTagName('Type')
 		
 		
-		if itemlist[0].firstChild.nodeValue == 'photograph':
+		if itemlist[0].firstChild.nodeValue == 'photograph' or itemlist[0].firstChild.nodeValue == 'pseudoscan':
 			
 			deleted += 1
 			fts = dir + '/' + xml.replace('.xml','.fts')
+			jpg = dir + '/' + xml.replace('.xml','.jpg')
+			
+			
 			# If text file exists, delete it.
 			if (os.path.isfile(fts)):
 				os.remove(fts)
-
+			
+			if (os.path.isfile(jpg)):
+				os.remove(jpg)
+			
 	print '*.fts files of {} "photograph" and "pseudoscan" images deleted.'.format(deleted)
 	
 if __name__ == '__main__':
