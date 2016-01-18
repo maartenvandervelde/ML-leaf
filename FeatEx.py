@@ -24,8 +24,14 @@ def extract_features(img, maxNumKeypoints = 0):
     sift = cv2.SIFT()
     if not maxNumKeypoints == 0:
         sift = cv2.SIFT(maxNumKeypoints)
+	
+	# Apply mask so SIFT features are only extracted from unmasked (foreground) area.
+	#thresh = 200
+    mask = cv2.threshold(img, 200, 255, cv2.THRESH_TOZERO_INV)[1]
 
-    kps, des = sift.detectAndCompute(img, None)
+    kps, des = sift.detectAndCompute(img, mask)
+    
+    
     return des.flatten();
 
 def convert_to_grayscale(filepath):
