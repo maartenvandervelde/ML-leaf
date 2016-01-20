@@ -1,4 +1,4 @@
-﻿import numpy as np
+import numpy as np
 import sys
 import glob
 import csv
@@ -91,9 +91,13 @@ def load_weights(filedir):
 def result_to_string(dir, result):
 	classes = [line.rstrip('\n') for line in open(dir + '/' + 'classes.txt')]
 	result = result.tolist()
-	maxIndex = result[0].index(max(result[0]))
-	outputName = classes[maxIndex]
-	return outputName
+	#maxIndex = result[0].index(max(result[0]))
+	#outputName = classes[maxIndex]
+	sortres = np.sort(result[0])[:5]
+	output = ["","","","",""]
+	for i in range(5):
+            output[i] = classes[result[0].index(sortres[i])]
+	return output
 
 def get_leaftype(dir, imagename):
 		f = open(dir + '/' + 'imagetable.csv')
@@ -156,13 +160,16 @@ def test_folder(dir, nn, model):
     for file in fileNames:
         input = []
         input.append(np.loadtxt(dir + "/" + file))	
-        input = np.array(input)	
-        result = result_to_string(absDir, nn.predict(input, model))
+        input = np.array(input)
+
         answer = get_leaftype(absDir, os.path.splitext(file)[0])
-        print "res: " + result + " | ans: " + answer
+        result = result_to_string(absDir, nn.predict(input, model))
+        for i in range(5):            
+            if (result[i] == answer):
+                correct += 1
+                print "res: " + result[i] + " | ans: " + answer
+                break
         total += 1
-        if (result == answer):
-            correct += 1
 
     print("Finished with testing accuracy of " + str(float(correct) / float(total) * 100) + " %") 
 
@@ -198,6 +205,6 @@ if __name__ == "__main__":
         dir = sys.argv[1]
         test_image(dir)
     else:
-        print "Invalid argument stucture, the struture should be as follows (ommit <>):\nTraining: <dir of folder> <epochs>\nTesting: <dir to file>"
+        print "Invalid argument stucture, the struture should be as follows (ommit <>):\nTraining: <dir train> <dir test> <hidden nodes> <epochs> <batches> <learn rate>\nTesting: <dir to file>"
 
     
