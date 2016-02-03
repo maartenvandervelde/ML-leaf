@@ -1,8 +1,27 @@
-@article{journals/cviu/KalyoncuT15,
+@inproceedings{conf/dicta/WangLCF11,
+	added-at = {2014-09-21T00:00:00.000+0200},
+	author = {Zhiyong Wang and Bin Lu and Zheru Chi and David Dagan Feng},
+	biburl = {http://www.bibsonomy.org/bibtex/27220809a34cdece0cd1cf8a8f7714c37/dblp},
+	booktitle = {DICTA},
+	crossref = {conf/dicta/2011},
+	editor = {Andrew P. Bradley and Paul T. Jackway},
+	ee = {http://doi.ieeecomputersociety.org/10.1109/DICTA.2011.115},
+	interhash = {46742a2a6d1532d917ba7e4fb70a6948},
+	intrahash = {7220809a34cdece0cd1cf8a8f7714c37},
+	isbn = {978-1-4577-2006-2},
+	keywords = {dblp},
+	pages = {650--654},
+	publisher = {IEEE Computer Society},
+	timestamp = {2015-06-18T20:04:23.000+0200},
+	title = {Leaf Image Classification with Shape Context and SIFT Descriptors.},
+	url = {http://dblp.uni-trier.de/db/conf/dicta/dicta2011.html#WangLCF11},
+	x-fetchedfrom = {Bibsonomy},
+	year = 2011
+}
+
+@article{Kaly2015,
 	added-at = {2015-03-19T00:00:00.000+0100},
 	author = {Cem Kalyoncu and \"{O}nsen Toygar},
-	biburl = {http://www.bibsonomy.org/bibtex/2f45f007fddaf97f78dd6dcce1a3f15ed/dblp},
-	ee = {http://dx.doi.org/10.1016/j.cviu.2014.11.001},
 	interhash = {647d0f37f03b3b9d01887504b2132d37},
 	intrahash = {f45f007fddaf97f78dd6dcce1a3f15ed},
 	journal = {Computer Vision and Image Understanding},
@@ -10,13 +29,13 @@
 	pages = {102--109},
 	timestamp = {2015-06-18T08:49:39.000+0200},
 	title = {Geometric leaf classification.},
-	url = {http://dblp.uni-trier.de/db/journals/cviu/cviu133.html#KalyoncuT15},
+	url = {http://dblp.uni-trier.de/db/journals/cviu/cviu133.html#KalyoncuT15; http://dx.doi.org/10.1016/j.cviu.2014.11.001; http://www.bibsonomy.org/bibtex/2f45f007fddaf97f78dd6dcce1a3f15ed/dblp},
 	volume = 133,
 	x-fetchedfrom = {Bibsonomy},
 	year = 2015
 }
 
-@article{New1,
+@article{Wang2015,
 	author = {Yu Wang and Xiaojuan Ban and Jie Chen and Bo Hu and Xing Yang},
 	journal = {Optik},
 	number = {126},
@@ -24,5 +43,58 @@
 	publisher = {Elsevier},
 	title = {License plate recognition},
 	year = {2015}
+}
+
+@inproceedings{Lowe1999,
+	added-at = {2010-02-09T14:13:37.000+0100},
+	author = {David G. Lowe},
+	biburl = {http://www.bibsonomy.org/bibtex/2d8bed1c69f407a0733c90b91deeccf60/xarabas},
+	booktitle = {Proc. of the International Conference on Computer Vision, Corfu},
+	file = {D\:\\Dokumenter\\Articles\\pdf\\1999 Object Recognition from Local Scale-Invariant Features.pdf},
+	interhash = {dfbf32ce201195976a7c73a116396443},
+	intrahash = {d8bed1c69f407a0733c90b91deeccf60},
+	keywords = {thesis yahoo! algorithms barcelona recognition vision},
+	timestamp = {2010-02-09T14:13:37.000+0100},
+	title = {Object Recognition from Local Scale-Invariant Features},
+	x-fetchedfrom = {Bibsonomy},
+	year = 1999
+}
+
+@article{journals/tip/HuangWT15,
+	added-at = {2015-09-23T00:00:00.000+0200},
+	author = {Kaiqi Huang and Chong Wang and Dacheng Tao},
+	biburl = {http://www.bibsonomy.org/bibtex/232f73a2e784c2850cccb3233962f1efb/dblp},
+	ee = {http://dx.doi.org/10.1109/TIP.2015.2449081},
+	interhash = {1887a00c819bff8d414184f73f68abbf},
+	intrahash = {32f73a2e784c2850cccb3233962f1efb},
+	journal = {IEEE Transactions on Image Processing},
+	keywords = {dblp},
+	number = 11,
+	pages = {3598--3608},
+	timestamp = {2015-09-24T11:33:16.000+0200},
+	title = {High-Order Topology Modeling of Visual Words for Image Classification.},
+	url = {http://dblp.uni-trier.de/db/journals/tip/tip24.html#HuangWT15},
+	volume = 24,
+	x-fetchedfrom = {Bibsonomy},
+	year = 2015
+}
+
+@article{journals/mlc/ZhangJZ10,
+	added-at = {2015-03-20T00:00:00.000+0100},
+	author = {Yin Zhang and Rong Jin and Zhi-Hua Zhou},
+	biburl = {http://www.bibsonomy.org/bibtex/29ccb507dd031153481e300280ababfc1/dblp},
+	ee = {http://dx.doi.org/10.1007/s13042-010-0001-0},
+	interhash = {3195c8984edb1fed888fb083f9a86af2},
+	intrahash = {9ccb507dd031153481e300280ababfc1},
+	journal = {Int. J. Machine Learning \& Cybernetics},
+	keywords = {dblp},
+	number = {1-4},
+	pages = {43--52},
+	timestamp = {2015-06-17T22:59:43.000+0200},
+	title = {Understanding bag-of-words model: a statistical framework.},
+	url = {http://dblp.uni-trier.de/db/journals/mlc/mlc1.html#ZhangJZ10},
+	volume = 1,
+	x-fetchedfrom = {Bibsonomy},
+	year = 2010
 }
 
