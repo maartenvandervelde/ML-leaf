@@ -52,8 +52,8 @@ class NeuralNetwork(object):
                     dr2_bias = np.sum(ao_delta, axis=0)
                     dr1_bias = np.sum(ah_delta, axis = 0)
 
-                    #dr2 += reg_lambda * w2
-                    #dr1 += reg_lambda * w1
+                    dr2 += reg_lambda * w2
+                    dr1 += reg_lambda * w1
                     
                     model['w2'] += learn * dr2
                     model['w1'] += learn * dr1
@@ -91,13 +91,13 @@ def load_weights(filedir):
 def result_to_string(dir, result):
 	classes = [line.rstrip('\n') for line in open(dir + '/' + 'classes.txt')]
 	result = result.tolist()
-	#maxIndex = result[0].index(max(result[0]))
-	#outputName = classes[maxIndex]
-	sortres = np.sort(result[0])[:5]
-	output = ["","","","",""]
-	for i in range(5):
-            output[i] = classes[result[0].index(sortres[i])]
-	return output
+	maxIndex = result[0].index(max(result[0]))
+	outputName = classes[maxIndex]
+	#sortres = np.sort(result[0])[:5]
+	#output = ["","","","",""]
+	#for i in range(5):
+            #output[i] = classes[result[0].index(sortres[i])]
+	return outputName
 
 def get_leaftype(dir, imagename):
 		f = open(dir + '/' + 'imagetable.csv')
@@ -159,10 +159,21 @@ def test_folder(dir, nn, model):
         input = np.array(np.loadtxt(dir + "/" + string))
         answer = get_leaftype(absDir, os.path.splitext(string)[0])
         result = result_to_string(absDir, nn.predict(input, model))
-        for i in range(5): 
-            if (result[i] == answer):
-                correct += 1
+        if (result == answer):
+            correct += 1
+    
+    #for file in fileNames:
+     #   input = []
+      #  input.append(np.loadtxt(dir + "/" + file))	
+       # input = np.array(input)
 
+#        answer = get_leaftype(absDir, os.path.splitext(file)[0])
+ #       result = result_to_string(absDir, nn.predict(input, model))
+  #      print "res: " + result + " | ans: " + answer
+        #for i in range(5):            
+   #     if (result == answer):
+    #        correct += 1
+     #       break
     print("Finished with testing accuracy of " + str(float(correct) / float(len(fileNames)) * 100) + " %") 
     print(str(correct) + " correct out of " + str(len(fileNames)))
 
