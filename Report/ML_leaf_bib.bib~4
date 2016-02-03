@@ -1,24 +1,28 @@
-@ARTICLE{dijkstra68,
-author = "E.W. Dijkstra",
-year = 1968,
-title = "Goto statements considered harmful",
-journal = "Communications of the ACM",
-volume = 11,
-number = 3,
-pages = "147--148"      }
+@article{journals/cviu/KalyoncuT15,
+	added-at = {2015-03-19T00:00:00.000+0100},
+	author = {Cem Kalyoncu and \"{O}nsen Toygar},
+	biburl = {http://www.bibsonomy.org/bibtex/2f45f007fddaf97f78dd6dcce1a3f15ed/dblp},
+	ee = {http://dx.doi.org/10.1016/j.cviu.2014.11.001},
+	interhash = {647d0f37f03b3b9d01887504b2132d37},
+	intrahash = {f45f007fddaf97f78dd6dcce1a3f15ed},
+	journal = {Computer Vision and Image Understanding},
+	keywords = {dblp},
+	pages = {102--109},
+	timestamp = {2015-06-18T08:49:39.000+0200},
+	title = {Geometric leaf classification.},
+	url = {http://dblp.uni-trier.de/db/journals/cviu/cviu133.html#KalyoncuT15},
+	volume = 133,
+	x-fetchedfrom = {Bibsonomy},
+	year = 2015
+}
 
-@BOOK{Charniak85,
-author = "E. Charniak and D. McDermott",
-year = 1985,
-title = "Introduction to Artificial Intelligence",
-publisher = "Addison-Wesley",
-address = "Reading, MA" }
-
-@INPROCEEDINGS{Steels98,
-author = "L. Steels",
-year = 1998,
-title = "Bootstrapping Cognition through Language",
-booktitle = "Proceedings of the Tenth Netherlands/Belgium Conference
-  on Artificial Intelligence (NAIC'98)",
-editor = "H. La Poutr\'e and H.J. van den Herik",
-pages = "3"     }
+@article{New1,
+	author = {Yu Wang and Xiaojuan Ban and Jie Chen and Bo Hu and Xing Yang},
+	journal = {Optik},
+	number = {126},
+	pages = {2895-2901},
+	publisher = {Elsevier},
+	title = {License plate recognition},
+	year = {2015}
+}
+
