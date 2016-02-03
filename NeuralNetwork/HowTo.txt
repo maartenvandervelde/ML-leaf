@@ -1,10 +1,10 @@
 Om te trainen:
-python NeuralNetwork.py "C:/JeFolderMetFTSTrainBestanden" "C:/JeFolderMetFTSTestBestanden" n_hidden_nodes epochs batches learn_rate
+python NeuralNetwork.py "C:/JeFolderMetFTSTrainBestanden" "C:/JeFolderMetFTSTestBestanden" n_hidden_nodes epochs learn_rate reg
 
 Om te testen
 python NeuralNetwork.py "C:/JeFolderMetFTSBestand/FTSBestand.fts"
 
 n_hidden_nodes : aantal hidden nodes, meestal ergens tussen n_input_nodes en n_output_nodes
 epochs: hoeveel iteraties (elke keer input in random volgorde)
-batches: hoeveel files in 1x worden gebruikt om mee te trainen (niet te hoog zetten en n_files mod(batches) moet nul zijn)
 learn_rate: snelheid van het leren (te hoog en je kan overschieten, te laag en je kan niet het locaal optima bereiken)
+reg: regularizatie (zet maar op 0.0 voor onze set, dit voorkomt te veel schommeling in weights)
