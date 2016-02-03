@@ -15,13 +15,14 @@ class NeuralNetwork(object):
         return y*(1-y)
 
     def feedforward(self, X, model):
-        ah = self.sigmoid(np.dot(X,model['w1']) + model['b1'])
-        ao = self.sigmoid(np.dot(ah,model['w2']) + model['b2'])
+        ah = self.sigmoid(np.dot(X,model['w1'] + model['b1']))
+        ao = self.sigmoid(np.dot(ah,model['w2'] + model['b2']))
         return ah, ao
 
-    def train(self, X, y, n_hid, epochs, batch=1, learn=0.1, reg_lambda=0.01):    
+    def train(self, X, y, n_hid, epochs, learn=0.1, reg_lambda=0.0):    
         n_in = len(X[0])
-        n_out = len(y[0])            
+        n_out = len(y[0])
+        
         w1 = 2*np.random.random((n_in,n_hid)) - 1
         w2 = 2*np.random.random((n_hid,n_out)) - 1
 
@@ -29,40 +30,38 @@ class NeuralNetwork(object):
         b2 = np.zeros((1, n_out))
                
         model = { 'w1': w1, 'b1': b1, 'w2': w2, 'b2': b2} 
-        indices = np.arange(n_in+1-(batch/2))
+        indices = np.arange(len(X))
 
-        for j in xrange(epochs):
+        for j in xrange(epochs):            
             np.random.shuffle(indices)
             for i in indices:
-                x = X[i*batch:i*batch+batch]
-                tar_y = y[i*batch:i*batch+batch]
-                if len(x) > 0:
-                    ai = x
-                    ah, ao = self.feedforward(ai, model)
+                x = np.array([X[i]])
+                tar_y = np.array([y[i]])
+                
+                hidden_layer, output_layer = self.feedforward(x, model)
+                
+                output_error = output_layer - tar_y
+                output_delta = output_error * self.dsigmoid(output_layer)
+                hidden_error = output_delta.dot(w2.T)
+                hidden_delta = hidden_error * self.dsigmoid(hidden_layer)
 
-                    ao_error = tar_y - ao
-                    ao_delta = ao_error*self.dsigmoid(ao)
-
-                    ah_error = ao_delta.dot(model['w2'].T)
-                    ah_delta = ah_error * self.dsigmoid(ah)
-
-                    dr2 = np.dot(ah.T, ao_delta)
-                    dr1 = np.dot(ai.T, ah_delta)
-
-                    dr2_bias = np.sum(ao_delta, axis=0)
-                    dr1_bias = np.sum(ah_delta, axis = 0)
-
-                    #dr2 += reg_lambda * w2
-                    #dr1 += reg_lambda * w1
-                    
-                    model['w2'] += learn * dr2
-                    model['w1'] += learn * dr1
-
-                    model['b2'] += learn * dr2_bias
-                    model['b1'] += learn * dr1_bias     
+                output_drift = hidden_layer.T.dot(output_delta)
+                hidden_drift = x.T.dot(hidden_delta)
+                bias_2_drift = np.sum(output_delta, axis=0)
+                bias_1_drift = np.sum(hidden_delta, axis=0) 
+                
+                output_drift += reg_lambda * w2
+                hidden_drift += reg_lambda * w1
+                
+                w2 -= learn * output_drift
+                w1 -= learn * hidden_drift
+                b2 -= learn * bias_2_drift
+                b1 -= learn * bias_1_drift
         
+                model = { 'w1': w1, 'b1': b1, 'w2': w2, 'b2': b2}
+                
             if (epochs >= 10 and j%(epochs/10)) == 0:
-                print "Epoch:" + str(j + (epochs/10)) + "/" + str(epochs)+ " : " + "Error:" + str(np.sum(ao_error**2))
+                print "Epoch:" + str(j + (epochs/10)) + "/" + str(epochs)+ " : " + "Error:" + str(np.sum(output_error**2))
                 
         return model
 
@@ -88,15 +87,13 @@ def load_weights(filedir):
 	return np.load(filedir + "/w1.weight"), np.load(filedir + "/w2.weight"), np.load(filedir + "/b1.weight"), np.load(filedir + "/b2.weight")
 
 #Returns name of class
-def result_to_string(dir, result):
+def result_to_string(dir, result, top=5):
 	classes = [line.rstrip('\n') for line in open(dir + '/' + 'classes.txt')]
 	result = result.tolist()
-	#maxIndex = result[0].index(max(result[0]))
-	#outputName = classes[maxIndex]
-	sortres = np.sort(result[0])[:5]
-	output = ["","","","",""]
-	for i in range(5):
-            output[i] = classes[result[0].index(sortres[i])]
+	sortres = np.sort(result)[::-1]
+	output = []
+	for i in range(top):
+            output.append(classes[result.index(sortres[i])])
 	return output
 
 def get_leaftype(dir, imagename):
@@ -136,21 +133,21 @@ def build_data(traindir):
 
     return np.array(input), np.array(output)
 
-def train_dir(traindir, testdir, n_hid, epochs, batch, learn):  
+def train_dir(traindir, testdir, n_hid, epochs, learn, reg):  
     absDir = os.path.abspath(os.path.dirname(__file__)) 
     input, output = build_data(traindir)
 
     if (len(input) > 0): 
         print "Building model..."
         nn = NeuralNetwork()     
-        model = nn.train(X=input, y=output, n_hid=n_hid, epochs=epochs, batch=batch, learn=learn)
+        model = nn.train(input, output, n_hid, epochs, learn, reg)
         save_weights(absDir, np.array(model['w1']), np.array(model['w2']), np.array(model['b1']), np.array(model['b2']))
         print "Testing model..."
         test_folder(testdir, nn, model)
     else:
         print "Error: Could not find images specified in image table"
 
-def test_folder(dir, nn, model):
+def test_folder(dir, nn, model, top=5):
     absDir = os.path.abspath(os.path.dirname(__file__))
     fileNames = get_filenames(dir)
 
@@ -158,10 +155,10 @@ def test_folder(dir, nn, model):
     for string in fileNames:
         input = np.array(np.loadtxt(dir + "/" + string))
         answer = get_leaftype(absDir, os.path.splitext(string)[0])
-        result = result_to_string(absDir, nn.predict(input, model))
-        for i in range(5): 
+        result = result_to_string(absDir, nn.predict(input, model), top)
+        for i in range(len(result)):
             if (result[i] == answer):
-                correct += 1
+                 correct += 1
 
     print("Finished with testing accuracy of " + str(float(correct) / float(len(fileNames)) * 100) + " %") 
     print(str(correct) + " correct out of " + str(len(fileNames)))
@@ -191,9 +188,9 @@ if __name__ == "__main__":
         testdir = sys.argv[2]
         n_hid = int(sys.argv[3])
         epochs = int(sys.argv[4])
-        batch = int(sys.argv[5])
-        learn = float(sys.argv[6])
-        train_dir(traindir, testdir, n_hid, epochs, batch, learn)
+        learn = float(sys.argv[5])
+        reg = float(sys.argv[6])
+        train_dir(traindir, testdir, n_hid, epochs, learn, reg)
     elif (argc is 2):
         dir = sys.argv[1]
         test_image(dir)
