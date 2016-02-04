@@ -34,8 +34,8 @@ Finally, \emph{photographs} have very diverse backgrounds, often with other plan
 \end{figure}
 
 Because of the complexity associated with extracting the leaf from its background, only \emph{scan} images (57\% of all images) were used in this study.
-This subset consisted of 6630 images of leaves from [??] classes.		%% missing number!
-There were [??] images per class on average.	%% missing number!
+This subset consisted of 6630 images of leaves from \hl{[??]} classes.		%% missing number!
+There were \hl{[??]} images per class on average.	%% missing number!
 
 The images were divided into a training set of 4870 images ($\pm 73\%$) and a test set of 1760 images ($\pm 27\%$).
 
@@ -52,6 +52,41 @@ This makes them suitable for this task, since the leaves are photographed at var
 % ...
 
 \subsection{Bag of visual words}
+In spite of the SIFT descriptors' robustness to scale and rotation changes, it is unrealistic to expect features to be exactly identical between leaves, because of natural variation between leaves, and variation in the images that cannot be accounted for by SIFT.
+Nevertheless we expect there to be certain natural features for each class that are recurrent in images of leaves of that class.
+A good way to discover these features from the `noisy' SIFT descriptors is to use a clustering approach.
+Each of the clusters that are found can then be considered to represent a certain feature that occurs multiple times in the data, albeit with some variation.
+
+This study uses K-Means clustering with Euclidean distance as its distance metric~\cite{macqueen1967}.
+A random subset of the total set of extracted SIFT descriptors is used for this process to mitigate the high computational cost caused by the high dimensionality of the SIFT descriptors (128 dimensions) and the large number of these descriptors.
+
+Extracting clusters from the SIFT descriptors in this way allows for a much simpler description of the data.
+Each cluster centre represents a \emph{visual word} (or code word).
+Together the set of cluster centres forms a dictionary (or bag) of visual words.
+Using this dictionary any image in the data set can be described in terms of its visual words.
+This process starts by extracting the SIFT descriptors from the image.
+These descriptors are then individually assigned to the existing clusters nearest to them using K-Nearest Neighbour.
+This step translates the descriptors from ones that are specific to the image to more general descriptors that represent certain visual words.
+Now that the image's features are expressed in terms of the visual words in the dictionary, a histogram can be made depicting the frequency of each visual word in the image.
+This histogram has a fixed length $K$ --- the number of visual words in the dictionary.
+
+A challenge of this approach is to find the optimal value of $K$.
+If $K$ is too small, the vocabulary will be too limited to accurately describe all features, since the clusters that form will be too general.
+Conversely, if $K$ is too large, too much of the original noise will still be present in the clusters, as there will be many small clusters that describe small variations of the same underlying feature. 
+This defeats the purpose of the bag-of-words approach by not really describing the images in more general terms.
+
+In this study $K$ was selected through a procedure in which classifier performance was compared for a range of values of $K$, between 50 and 250 (based on~\cite{Nguy2013}).
+
 
 
 \subsection{Classifiers}
+
+\subsubsection{Neural network}
+
+
+\subsubsection{KNN}
+A K-Nearest Neighbour classifier was made to serve as a comparison for the neural network's performance.
+The classifier finds the $K$ nearest neighbours of a test image's bag-of-words histogram (using Euclidean distance) and assigns it the majority class.
+In case of a tie the class assignment is chosen randomly from the tied competitors.
+The classifier returns a list of the top $T$ classes.
+Following~\cite{Wang2011, Belh2008}, a classification is considered to be correct if the ground truth class appears in the top 5 results. 
