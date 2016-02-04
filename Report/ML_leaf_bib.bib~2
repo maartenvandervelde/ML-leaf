@@ -19,6 +19,52 @@
 	year = 2011
 }
 
+@inproceedings{conf/eccv/BelhumeurCFJKLLRSWZ08,
+	added-at = {2012-09-26T00:00:00.000+0200},
+	author = {Peter N. Belhumeur and Daozheng Chen and Steven Feiner and David W. Jacobs and W. John Kress and Haibin Ling and Ida C. Lopez and Ravi Ramamoorthi and Sameer Sheorey and Sean White and Ling Zhang},
+	biburl = {http://www.bibsonomy.org/bibtex/285b0bbab3dc47885d3e1a9c9f09ca85f/dblp},
+	booktitle = {ECCV (4)},
+	crossref = {conf/eccv/2008-4},
+	editor = {David A. Forsyth and Philip H. S. Torr and Andrew Zisserman},
+	ee = {http://dx.doi.org/10.1007/978-3-540-88693-8_9},
+	interhash = {096be3792097bf04a6797a0ed40d9843},
+	intrahash = {85b0bbab3dc47885d3e1a9c9f09ca85f},
+	isbn = {978-3-540-88692-1},
+	keywords = {dblp},
+	pages = {116--129},
+	publisher = {Springer},
+	series = {Lecture Notes in Computer Science},
+	timestamp = {2012-09-27T11:42:11.000+0200},
+	title = {Searching the World's Herbaria: A System for Visual Identification of Plant Species.},
+	url = {http://dblp.uni-trier.de/db/conf/eccv/eccv2008-4.html#BelhumeurCFJKLLRSWZ08},
+	volume = 5305,
+	x-fetchedfrom = {Bibsonomy},
+	year = 2008
+}
+
+@inproceedings{conf/eccv/KumarBBJKLS12,
+	added-at = {2012-09-26T00:00:00.000+0200},
+	author = {Neeraj Kumar and Peter N. Belhumeur and Arijit Biswas and David W. Jacobs and W. John Kress and Ida C. Lopez and Jo\~{a}o V. B. Soares},
+	biburl = {http://www.bibsonomy.org/bibtex/2ffa98d3b56ae56ad69b5fb8b74971777/dblp},
+	booktitle = {ECCV (2)},
+	crossref = {conf/eccv/2012-2},
+	editor = {Andrew W. Fitzgibbon and Svetlana Lazebnik and Pietro Perona and Yoichi Sato and Cordelia Schmid},
+	ee = {http://dx.doi.org/10.1007/978-3-642-33709-3_36},
+	interhash = {65e30b21aa4c0206a7dd8cde0a7334a4},
+	intrahash = {ffa98d3b56ae56ad69b5fb8b74971777},
+	isbn = {978-3-642-33708-6},
+	keywords = {dblp},
+	pages = {502--516},
+	publisher = {Springer},
+	series = {Lecture Notes in Computer Science},
+	timestamp = {2012-09-27T11:38:44.000+0200},
+	title = {Leafsnap: A Computer Vision System for Automatic Plant Species Identification.},
+	url = {http://dblp.uni-trier.de/db/conf/eccv/eccv2012-2.html#KumarBBJKLS12},
+	volume = 7573,
+	x-fetchedfrom = {Bibsonomy},
+	year = 2012
+}
+
 @article{Kaly2015,
 	added-at = {2015-03-19T00:00:00.000+0100},
 	author = {Cem Kalyoncu and \"{O}nsen Toygar},
@@ -96,5 +142,75 @@
 	volume = 1,
 	x-fetchedfrom = {Bibsonomy},
 	year = 2010
+}
+
+@article{journals/ijon/DuZW13_2,
+	added-at = {2013-06-19T00:00:00.000+0200},
+	author = {Ji-Xiang Du and Chuan-Min Zhai and Qing-Ping Wang},
+	biburl = {http://www.bibsonomy.org/bibtex/24e6b9e24baa43b278592c06795e138f9/dblp},
+	ee = {http://dx.doi.org/10.1016/j.neucom.2012.03.028},
+	interhash = {8606d2bbc2175131f011d416954c925d},
+	intrahash = {4e6b9e24baa43b278592c06795e138f9},
+	journal = {Neurocomputing},
+	keywords = {dblp},
+	pages = {150--156},
+	timestamp = {2013-08-13T14:16:16.000+0200},
+	title = {Recognition of plant leaf image based on fractal dimension features.},
+	url = {http://dblp.uni-trier.de/db/journals/ijon/ijon116.html#DuZW13},
+	volume = 116,
+	x-fetchedfrom = {Bibsonomy},
+	year = 2013
+}
+
+@inproceedings{ieee6698145,
+	abstract = {Even many works have been proposed for automatic plant identification, there exists very few plant identification applications on the market. To the best of our knowledge, Leafsnap [1] is the first automatic plant identification application. However, this application is dedicated to iOS users and is working with tree species of the Northeastern United States. Today, a huge number of Android users make an interesting market for developing plant identification for Android. The contribution of this paper is two-fold. Firstly, we propose a leaf based plant identification method using SURF features in combination with Bag of Words and supervised learning. This method obtains better results in comparison with other existed methods in the same database. Secondly, we develop a leaf based plant identification system for Android.},
+	author = {Quang-Khue Nguyen and Thi-Lan Le and Ngoc-Hai Pham},
+	booktitle = {{Advanced Technologies for Communications (ATC), 2013 International Conference on}},
+	doi = {10.1109/ATC.2013.6698145},
+	isbn = {978-1-4799-1086-1},
+	issn = {2162-1020},
+	pages = {404--407},
+	publisher = {IEEE},
+	title = {{Leaf based plant identification system for Android using SURF features in combination with Bag of Words model and supervised learning}},
+	url = {http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=6698145},
+	x-fetchedfrom = {IEEEXplore},
+	year = {2013}
+}
+
+@article{journals/imst/LeeC06,
+	added-at = {2013-04-24T00:00:00.000+0200},
+	author = {Chia-Ling Lee and Shu-Yuan Chen},
+	biburl = {http://www.bibsonomy.org/bibtex/28e62295c4aeb7faec773f0911ac64a8f/dblp},
+	ee = {http://dx.doi.org/10.1002/ima.20063},
+	interhash = {38ba9e5d82bb0a494cc2b6d541862b6c},
+	intrahash = {8e62295c4aeb7faec773f0911ac64a8f},
+	journal = {Int. J. Imaging Systems and Technology},
+	keywords = {dblp},
+	number = 1,
+	pages = {15--23},
+	timestamp = {2013-08-13T13:27:25.000+0200},
+	title = {Classification of leaf images.},
+	url = {http://dblp.uni-trier.de/db/journals/imst/imst16.html#LeeC06},
+	volume = 16,
+	x-fetchedfrom = {Bibsonomy},
+	year = 2006
+}
+
+@article{journals/ijprai/ZhangWZ14,
+	added-at = {2014-07-22T00:00:00.000+0200},
+	author = {Shanwen Zhang and Xianfeng Wang and Chuanlei Zhang},
+	biburl = {http://www.bibsonomy.org/bibtex/2d2b094f6a9575f25488307b621cbe87d/dblp},
+	ee = {http://dx.doi.org/10.1142/S0218001414500104},
+	interhash = {ee2dddaaa4c4deef1f88c97c03ae1cd1},
+	intrahash = {d2b094f6a9575f25488307b621cbe87d},
+	journal = {IJPRAI},
+	keywords = {dblp},
+	number = 4,
+	timestamp = {2015-06-18T00:14:28.000+0200},
+	title = {Orthogonal Maximum Margin Discriminant Projection with Application to Leaf Image Classification.},
+	url = {http://dblp.uni-trier.de/db/journals/ijprai/ijprai28.html#ZhangWZ14},
+	volume = 28,
+	x-fetchedfrom = {Bibsonomy},
+	year = 2014
 }
 
