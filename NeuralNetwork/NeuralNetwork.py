@@ -33,6 +33,7 @@ class NeuralNetwork(object):
         indices = np.arange(len(X))
 
         for j in xrange(epochs):            
+            iter = 0
             np.random.shuffle(indices)
             for i in indices:
                 x = np.array([X[i]])
@@ -60,8 +61,9 @@ class NeuralNetwork(object):
         
                 model = { 'w1': w1, 'b1': b1, 'w2': w2, 'b2': b2}
                 
-            if (epochs >= 10 and j%(epochs/10)) == 0:
-                print "Epoch:" + str(j + (epochs/10)) + "/" + str(epochs)+ " : " + "Error:" + str(np.sum(output_error**2))
+                if (iter >= 10 and i%(iter/10)) == 0:
+                    print "Epoch(" + str(j) + "/" + str(epochs)+ "), Iter(" + str(iter) + "/" + str(len(indices)) + ") : " + "Error:" + str(np.sum(output_error**2))
+                iter += 1
                 
         return model
 
@@ -195,6 +197,6 @@ if __name__ == "__main__":
         dir = sys.argv[1]
         test_image(dir)
     else:
-        print "Invalid argument stucture, the struture should be as follows (ommit <>):\nTraining: <dir train> <dir test> <hidden nodes> <epochs> <batches> <learn rate>\nTesting: <dir to file>"
+        print "Invalid argument stucture, the struture should be as follows (ommit <>):\nTraining: <dir train> <dir test> <hidden nodes> <epochs> <learn rate> <regularization>\nTesting: <dir to file>"
 
     
