@@ -4,6 +4,9 @@ import glob
 import xml
 from xml.dom import minidom
 
+# Deletes all files that are not associated with the top 32 classes in the ImageCLEF2012 dataset from training/testing directories.
+
+
 xmls = []
 xmls =  glob.glob1(os.path.abspath(''),'*.xml')
 top32classes = [
@@ -51,7 +54,7 @@ for xml in xmls:
 		count -= 1
 		jpg = xml.replace('.xml','.jpg')
 		fts = xml.replace('.xml','.fts')
-		hst = xml.replace('.xml','.fts') 
+		hst = xml.replace('.xml','.hst') 
 		if (os.path.isfile(jpg)):
 			os.remove(os.path.abspath(os.path.dirname(__file__)) + '/' + jpg)
 		if(os.path.isfile(fts)):

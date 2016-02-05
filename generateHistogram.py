@@ -7,7 +7,7 @@ import sys, os, glob
 # Generates a Bag-of-Words histogram of an image, given a text file containing the cluster centers (visual words) and a text file containing the image's features.
 # The resulting histogram is normalised and saved in a new text file called [image name]_K[number of clusters]_hist.txt.
 #
-# Example call: "python generateHistogram.py kmeans_centers_N90534_K10.txt NeuralNetwork/grootste5".
+# Example call: "python generateHistogram.py kmeans_centers_N90534_K10.txt imageclef/train".
 #
 # 07 Jan 2016 Maarten
 
@@ -38,9 +38,7 @@ class GenerateHistogram():
 		# Each feature is assigned to its nearest cluster (visual word)
 		words = np.argmin(distances, axis = 1)
 		
-		# Store word frequency in a histogram of length K
-		#histogram = np.bincount(words)
-		
+		# Store word frequency in a histogram of length K		
 		histogram = np.asarray([0] * self.K)
 		for number in words:
 			histogram[number] += 1
@@ -50,8 +48,7 @@ class GenerateHistogram():
 
 		# Save histogram to file
 		filename = os.path.splitext(img_file)[0] + '.hst'
-		np.savetxt(filename, histogram)
-		#print 'Histogram written to', filename
+		np.savetxt(filename, histogram, newline = '\n')
 
 	
 	# Read image features from file

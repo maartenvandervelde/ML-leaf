@@ -1,7 +1,15 @@
 #!/usr/bin/env python
 
 
-# K-means code adapted from https://datasciencelab.wordpress.com/2014/01/15/improved-seeding-for-clustering-with-k-means/
+# Clusters SIFT descriptors using K-Means clustering.
+# The resulting cluster centres are written to a file.
+#
+# Arguments:
+# 	- ftsfile (required)	: file containing a list of 128-element SIFT descriptors.
+#
+# Example call: "python kmeans.py features.fts".
+#
+#
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -15,7 +23,7 @@ class KMeans():
 		self.X = (self.X / float(np.amax(self.X))) * 2 - 1
 		self.N = len(self.X)
 		
-		self.mu = None
+		self.means = None
 		self.clusters = None
 		
 		print "Clustering", str(len(self.X)), "keypoints from the file", file, "into", str(self.K), "clusters..."
@@ -27,36 +35,36 @@ class KMeans():
 		return keypoints
 
 	def _cluster_points(self):
-		mu = self.mu
+		means = self.means
 		clusters  = {}
-		for x in self.X:
-			bestmukey = min([(i[0], np.linalg.norm(x-mu[i[0]])) for i in enumerate(mu)], key=lambda t:t[1])[0]
+		for keypoint in self.X:
+			bestmeanskey = min([(i[0], np.linalg.norm(keypoint-means[i[0]])) for i in enumerate(means)], key=lambda t:t[1])[0]
 			try:
-				clusters[bestmukey].append(x)
+				clusters[bestmeanskey].append(keypoint)
 			except KeyError:
-				clusters[bestmukey] = [x]
+				clusters[bestmeanskey] = [keypoint]
 		self.clusters = clusters
  
 	def _reevaluate_centers(self):
 		clusters = self.clusters
-		newmu = []
+		newmeans = []
 		keys = sorted(self.clusters.keys())
 		for k in keys:
-			newmu.append(np.mean(clusters[k], axis = 0))
-		self.mu = newmu
+			newmeans.append(np.mean(clusters[k], axis = 0))
+		self.means = newmeans
  
 	def _has_converged(self):
-		K = len(self.oldmu)
-		return(set([tuple(a) for a in self.mu]) == set([tuple(a) for a in self.oldmu]) and len(set([tuple(a) for a in self.mu])) == K)
+		K = len(self.oldmeans)
+		return(set([tuple(a) for a in self.means]) == set([tuple(a) for a in self.oldmeans]) and len(set([tuple(a) for a in self.means])) == K)
  
 	def find_centers(self):
 		X = self.X
 		K = self.K
-		self.oldmu = random.sample(X, K)
-		self.mu = random.sample(X, K)
+		self.oldmeans = random.sample(X, K)
+		self.means = random.sample(X, K)
 		
 		while not self._has_converged():
-			self.oldmu = self.mu
+			self.oldmeans = self.means
 			# Assign all points in X to clusters
 			self._cluster_points()
 			# Reevaluate centers
@@ -64,7 +72,7 @@ class KMeans():
 	
 	def write_centers(self):
 		filename = 'kmeans_centers_N' + str(self.N) + '_K' + str(self.K) + '.txt'
-		np.savetxt(filename, self.mu)
+		np.savetxt(filename, self.means)
 		print 'Cluster centers written to', filename
 		return filename
 

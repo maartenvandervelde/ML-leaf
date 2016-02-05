@@ -11,8 +11,9 @@ import sys, os, glob, csv
 # 	- train_dir (required)	: directory containing training *.hst files.
 #	- test_dir (required)	: directory containing testing *.hst files.
 #	- max_K (required)		: KNN classification will report accuracy for K = 1 up to K = max_K.
+#	- T (required)			: Classification is considered correct if answer appears in top T results.
 #
-# Example call: "python knn.py train test 3".
+# Example call: "python knn.py train test 3 5".
 #
 #
 
@@ -87,7 +88,7 @@ class KnnClassifier():
 		
 		
 	# Calculates and prints accuracy for a range of K's, given an array of classifications
-	def print_accuracy(self, classifications, lower_K, upper_K):
+	def print_accuracy(self, classifications, lower_K, upper_K, T=1):
 		count = len(classifications)
 		accuracies = []
 		
@@ -97,11 +98,11 @@ class KnnClassifier():
 			for row in classifications:
 				class_real = row[0]
 
-				# Assign majority class to item using the i nearest neighbours' votes 
-				class_vote = Counter(row[1:i]).most_common(1)[0][0]
-				
-				if (class_real == class_vote):
-					correct += 1
+				# Assign T classes to item using the i nearest neighbours' votes 
+				class_vote = Counter(row[1:i]).most_common(T)
+				for item in class_vote:
+					if class_real in item:
+						correct += 1
 			
 			accuracy = float(correct) * 100 / count
 			accuracies.append(accuracy)
@@ -131,16 +132,18 @@ def get_leaftype(imagename):
 def main(argv):
 	argc = len(argv)
 	
-	if (argc is not 3):
+	if (argc is not 4):
 		print '\nWarning: incorrect argument(s) to knn.py. Expected arguments:\n\n' \
 		'\t- train_dir (required)\t: directory containing training *.hst files.\n' \
 		'\t- test_dir (required)\t: directory containing testing *.hst files.\n'\
-		'\t- max_K (required)\t: KNN classification will report accuracy for K = 1 up to K = max_K.\n'
+		'\t- max_K (required)\t: KNN classification will report accuracy for K = 1 up to K = max_K.\n'\
+		'\t- T (required)\t\t: Classification is considered correct if answer appears in top T results.\n'
 		sys.exit(1)
 	
 	traindir = argv[0]
 	testdir = argv[1]
 	K = int(argv[2])
+	T = int(argv[3])
 	
 	# Load training data
 	KNN = KnnClassifier(traindir, K)
@@ -149,7 +152,7 @@ def main(argv):
 	classifications = KNN.classify(testdir)
 	
 	# Report accuracy
-	KNN.print_accuracy(classifications, 1, K)
+	KNN.print_accuracy(classifications, 1, K, T)
 		
 if __name__ == '__main__':
 	main(sys.argv[1:])

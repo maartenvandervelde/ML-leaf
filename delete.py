@@ -38,7 +38,7 @@ def main(argv):
 		xml1 = open(dir + '/' + xml)
 		xml2 = minidom.parse(xml1)
 		itemlist =  xml2.getElementsByTagName('Type')
-		
+		xml1.close()
 		
 		if itemlist[0].firstChild.nodeValue == 'photograph' or itemlist[0].firstChild.nodeValue == 'pseudoscan':
 			
@@ -53,6 +53,8 @@ def main(argv):
 			
 			if (os.path.isfile(jpg)):
 				os.remove(jpg)
+			
+			os.remove(dir + '/' + xml)
 			
 	print '*.fts files of {} "photograph" and "pseudoscan" images deleted.'.format(deleted)
 	
