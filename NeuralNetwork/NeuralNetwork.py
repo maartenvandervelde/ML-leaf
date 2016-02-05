@@ -7,40 +7,46 @@ import os
 class NeuralNetwork(object):
     def __init__(self):
         np.random.seed(1)
-
+    #Activation function
     def sigmoid(self, x):
         return 1/(1+np.exp(-x))
-
+    #Derivative (direction of weight change)
     def dsigmoid(self, y):
         return y*(1-y)
-
+    #Feedforward, calculates output based on weights
     def feedforward(self, X, model):
         ah = self.sigmoid(np.dot(X,model['w1'] + model['b1']))
         ao = self.sigmoid(np.dot(ah,model['w2'] + model['b2']))
         return ah, ao
-
+    #Actual training of the weights
     def train(self, X, y, n_hid, epochs, learn=0.1, reg_lambda=0.0):    
         n_in = len(X[0])
         n_out = len(y[0])
         
+        #Random weights [-1, 1]
         w1 = 2*np.random.random((n_in,n_hid)) - 1
         w2 = 2*np.random.random((n_hid,n_out)) - 1
 
         b1 = np.zeros((1, n_hid))
         b2 = np.zeros((1, n_out))
-               
+
+        #Setup model with weights and biases       
         model = { 'w1': w1, 'b1': b1, 'w2': w2, 'b2': b2} 
         indices = np.arange(len(X))
-
+        
+        #Shuffle input every epoch (online learning)
         for j in xrange(epochs):            
             iter = 0
             np.random.shuffle(indices)
             for i in indices:
                 x = np.array([X[i]])
                 tar_y = np.array([y[i]])
-                
+
+                #Get estimated output                
                 hidden_layer, output_layer = self.feedforward(x, model)
-                
+
+                #Calculate error and amount of change (drift) needed for
+                #the weights and in which direction this weight change must be
                 output_error = output_layer - tar_y
                 output_delta = output_error * self.dsigmoid(output_layer)
                 hidden_error = output_delta.dot(w2.T)
@@ -50,10 +56,12 @@ class NeuralNetwork(object):
                 hidden_drift = x.T.dot(hidden_delta)
                 bias_2_drift = np.sum(output_delta, axis=0)
                 bias_1_drift = np.sum(hidden_delta, axis=0) 
-                
+
+                #Regularization
                 output_drift += reg_lambda * w2
                 hidden_drift += reg_lambda * w1
-                
+
+                #Update weights / biases and the model
                 w2 -= learn * output_drift
                 w1 -= learn * hidden_drift
                 b2 -= learn * bias_2_drift
@@ -61,12 +69,13 @@ class NeuralNetwork(object):
         
                 model = { 'w1': w1, 'b1': b1, 'w2': w2, 'b2': b2}
                 
-                if (iter >= 10 and i%(iter/10)) == 0:
+                if (iter >= 10 and (iter%10 == 0)):
                     print "Epoch(" + str(j) + "/" + str(epochs)+ "), Iter(" + str(iter) + "/" + str(len(indices)) + ") : " + "Error:" + str(np.sum(output_error**2))
                 iter += 1
                 
         return model
 
+    #Prediction is just feedforward (used after training)
     def predict(self, x, model):
         return self.feedforward(x, model)[1]
 
@@ -98,6 +107,7 @@ def result_to_string(dir, result, top=5):
             output.append(classes[result.index(sortres[i])])
 	return output
 
+#Get leaftype based on image name
 def get_leaftype(dir, imagename):
 		f = open(dir + '/' + 'imagetable.csv')
 		csv_f = csv.reader(f)
@@ -105,9 +115,11 @@ def get_leaftype(dir, imagename):
 			if row[0] == imagename:
 				return row.pop()
 
+#Load hst file
 def build_input(dir, file):
     return np.loadtxt(dir + '/' + file)
 
+#Build output vectors based on its index in classes.txt
 def build_output(dir, leaftype):
 	classes = [line.rstrip('\n') for line in open(dir + '/' + 'classes.txt')]
 	outputArray = []
@@ -118,7 +130,8 @@ def build_output(dir, leaftype):
 	outputArray[index] = replacement
 	outputArray = np.array(outputArray)
 	return outputArray
-
+    
+#Build input and output data from training directory
 def build_data(traindir):
     print "Loading data..."
     absDir = os.path.abspath(os.path.dirname(__file__))
@@ -135,6 +148,7 @@ def build_data(traindir):
 
     return np.array(input), np.array(output)
 
+#Train directory
 def train_dir(traindir, testdir, n_hid, epochs, learn, reg):  
     absDir = os.path.abspath(os.path.dirname(__file__)) 
     input, output = build_data(traindir)
@@ -149,6 +163,7 @@ def train_dir(traindir, testdir, n_hid, epochs, learn, reg):
     else:
         print "Error: Could not find images specified in image table"
 
+#Test a folder and report accuracy (using top 5)
 def test_folder(dir, nn, model, top=5):
     absDir = os.path.abspath(os.path.dirname(__file__))
     fileNames = get_filenames(dir)
@@ -165,6 +180,7 @@ def test_folder(dir, nn, model, top=5):
     print("Finished with testing accuracy of " + str(float(correct) / float(len(fileNames)) * 100) + " %") 
     print(str(correct) + " correct out of " + str(len(fileNames)))
 
+#Predict the leaf type of an image
 def test_image(dir):
     absDir = os.path.abspath(os.path.dirname(__file__))
     input = []
