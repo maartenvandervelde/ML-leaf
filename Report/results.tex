@@ -1,15 +1,17 @@
 \section{Results}
 
-\subsection{Parameters}
-The optimal number of visual words used in the bag-of-words process was found to be 100.
-
-% Other parameters?
-
 \subsection{Neural network classifier}
+SIFT descriptors were extracted from each image, with a maximum of 100 descriptors per image.
+A random subset of 100 of the files containing these descriptors was used for the clustering step in the bag-of-words process, in which the descriptors were mapped onto 100 clusters.
+This number of clusters was empirically found to provide a good trade-off between accuracy and computation time.
+A subset of all SIFT descriptors was used to ensure clustering completed within a reasonable time span.
+The neural network, containing 100 hidden nodes, was run for 1,000 epochs with a learn rate of 0.1 and no regularisation.
+Classifications were considered correct if the ground truth class appeared in the top 5 results.
+Using this metric, the network's classification accuracy was 77.78\%.
 
 \subsection{KNN classifier}
 As with the neural network classifier, a maximum of 100 SIFT descriptors were extracted from each image.
-A random subset of 100 of the files containing these descriptors was used for the clustering step in the bag-of-words process, in which the descriptors were mapped onto 100 clusters.
+Once again a random subset of 100 of the files containing these descriptors was used for creating the 100 clusters of the visual bag-of-words.
 The classifier was run on the test data for values of $K$ ranging from 1 to 100.
 The highest accuracy of 60.9\% was achieved with $K = 32$.
 
