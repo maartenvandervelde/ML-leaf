@@ -1,0 +1,11 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\begin{document}
+For this research a neural network, with backward propagation of errors, was used as the main classifier for the extracted image data. As our optimization method we used gradient descent. The network consisted of an input layer, one hidden layer and an output layer.\\
+As our classifier used supervised learning we needed to specify target output and compare it to the output given by the network. For the output we used $N_{output}$ output nodes where $N_{output}=N_{leaftypes}$. The target consisted of a vector $V=[..,0,0,0,..]$ of length $N_{leaftypes}$ where $V[I_{leaftype}]=1$. The index $I_{leaftype}$ was unique for every leaf type and corresponded to its index in the leaf type dictionary. The amount of input nodes was $N_{input}=Length_{histogram}$ The optimal amount of hidden nodes was $N_{hidden}=100$ and were randomly initialized from a continuous uniform distribution of the interval $[-1, 1]$.\\
+As the activation function the sigmoid function was chosen, defined by $$f(x)=\frac{1}{1+\exp^{-x}}$$.
+Where its derivative is as follows
+$$f'(x)=f(x)(1-f(x))$$
+A learning value of $0.01$ was used for all weights including those of the bias nodes of which there were 2, one connected to the hidden layer and one connected to the output layer. The option for regularization, that discourages large changes in weights, was also added, but later discarded as no improvements were shown for various values of the regularization lambda. Another change made was the removal of mini-batch learning in favor of online learning, although improving the time till convergence, it reduced accuracy and was therefore dropped from the network.\\
+In order to avoid the program to learn meaning from the order of input data we presented the data in a randomized order every epoch. This counteracts repeating update cycles.
+\end{document}
