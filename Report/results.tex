@@ -9,6 +9,15 @@ The neural network, containing 100 hidden nodes, was run for 1,000 epochs with a
 Classifications were considered correct if the ground truth class appeared in the top 5 results.
 Using this metric, the network's classification accuracy was 77.78\%.
 
+Figure \vref{fig:nnresults} shows how the accuracy of the network improves quickly for the first 20 epochs, and then stabilises.
+
+\begin{figure}[htb]
+	\centering
+	\input{nnresults.tex}%
+	\caption{Classification accuracy of the neural network at various stages during training.}
+	\label{fig:nnresults}
+\end{figure}
+
 \subsection{KNN classifier}
 As with the neural network classifier, a maximum of 100 SIFT descriptors were extracted from each image.
 Once again a random subset of 100 of the files containing these descriptors was used for creating the 100 clusters of the visual bag-of-words.
