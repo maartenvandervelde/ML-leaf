@@ -1,4 +1,10 @@
 \section{Discussion}
+Many of the issues we encountered had to do with aspects that we initially did not expect would become problematic. One problem was the initially long time needed for the training of the Neural network, which could require multiple hours to complete. Although eventual improvements severely reduced the time needed, it still prevented us from performing exhaustive parameter tests early on. Despite this, we have proved that a neural network can classify images with a rate of accuracy far better than guessing, and in fact comparable with other efforts reported in the ImageClef 2012 results. SIFT and Bag of Words have proved to provide a good pre-processing strategy, given the favorable results.\\
+Aside from the details of the implementation, we also encountered unexpected decisions we had to make; those regarding the criteria for a successful classification for example, or the nature of the input. The latter point involved the choice of what types of images to include; just scans, or natural photographs as well?\\
+\\
+In its current state, our program would probably require significant development to make it suitable for a mobile platform, but the system is functional. One step that should be added if functionality in the real world is to be achieved, is a mechanism to distinguish leaves from non-leaves. The next step could then be the creation of a desktop application that could train a neural network, which could then be brought into the field on a mobile app. The app itself would only need the functionality to pre-process a photograph taken with the device, and classify it. A final version would perhaps include the option to have classification done through Internet upload to a remote server, a method used by LeafSnap. In short, while the software is not very portable, it serves as a definite proof of viability for the concept.
+
+
 This is the discussion section.
 It is imported from the file \verb+discussion.tex+.
 
