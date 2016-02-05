@@ -34,10 +34,12 @@ Finally, \emph{photographs} have very diverse backgrounds, often with other plan
 \end{figure}
 
 Because of the complexity associated with extracting the leaf from its background, only \emph{scan} images (57\% of all images) were used in this study.
-This subset consisted of 6630 images of leaves from \hl{[??]} classes.		%% missing number!
-There were \hl{[??]} images per class on average.	%% missing number!
+This subset consists of 6630 images of leaves from 75 classes.
+The number of images varies strongly per class, from a single image (\emph{Xanthium strumarium}), to 367 (\emph{Ulmus minor}).
+To resolve this imbalance only images from the 32 most frequent classes were used in this study. The least frequent of these 32 classes (\emph{Punica granatum}) still had 134 images.
 
-The images were divided into a training set of 4870 images ($\pm 73\%$) and a test set of 1760 images ($\pm 27\%$).
+%The images were divided into a training set of 4870 images ($\pm 73\%$) and a test set of 1760 images ($\pm 27\%$).
+These images were divided into a training set of 2550 images ($\pm 73\%$) and a test set of 965 images ($\pm 27\%$).
 
 
 \subsection{Feature extraction}
@@ -82,7 +84,13 @@ In this study $K$ was selected through a procedure in which classifier performan
 \subsection{Classifiers}
 
 \subsubsection{Neural network}
-
+For this research a neural network, with backward propagation of errors, was used as the main classifier for the extracted image data. As our optimization method we used gradient descent. The network consisted of an input layer, one hidden layer and an output layer.\\
+As our classifier used supervised learning we needed to specify target output and compare it to the output given by the network. For the output we used $N_{output}$ output nodes where $N_{output}=N_{leaftypes}$. The target consisted of a vector $V=[..,0,0,0,..]$ of length $N_{leaftypes}$ where $V[I_{leaftype}]=1$. The index $I_{leaftype}$ was unique for every leaf type and corresponded to its index in the leaf type dictionary. The amount of input nodes was $N_{input}=Length_{histogram}$ The optimal amount of hidden nodes was $N_{hidden}=100$ and were randomly initialized from a continuous uniform distribution of the interval $[-1, 1]$.\\
+As the activation function the sigmoid function was chosen, defined by $$f(x)=\frac{1}{1+e^{-x}}$$
+Where its derivative is as follows:
+$$f'(x)=f(x)(1-f(x))$$
+A learning value of $0.01$ was used for all weights including those of the bias nodes of which there were 2, one connected to the hidden layer and one connected to the output layer. The option for regularization, that discourages large changes in weights, was also added, but later discarded as no improvements were shown for various values of the regularization lambda. Another change made was the removal of mini-batch learning in favour of online learning, although improving the time till convergence, it reduced accuracy and was therefore dropped from the network.\\
+In order to avoid the program to learn meaning from the order of input data we presented the data in a randomized order every epoch. This counteracts repeating update cycles.
 
 \subsubsection{KNN}
 A K-Nearest Neighbour classifier was made to serve as a comparison for the neural network's performance.

@@ -8,6 +8,20 @@ The optimal number of visual words used in the bag-of-words process was found to
 \subsection{Neural network classifier}
 
 \subsection{KNN classifier}
+As with the neural network classifier, a maximum of 100 SIFT descriptors were extracted from each image.
+A random subset of 100 of the files containing these descriptors was used for the clustering step in the bag-of-words process, in which the descriptors were mapped onto 100 clusters.
 The classifier was run on the test data for values of $K$ ranging from 1 to 100.
-The highest accuracy of \hl{[??]\%} was achieved with \hl{$K = [??]$}.	%% missing numbers!
+The highest accuracy of 60.9\% was achieved with $K = 32$.
 
+Classifications were considered correct if the ground truth class appeared in the top $T$ results.
+Figure \vref{fig:knnresults} shows the accuracy of the KNN classifier at various values of $T$, with $K$ ranging from 1 to 100.
+Performance remains more or less steady once $K$ is above 10.
+The marginal gain in accuracy for larger values of $T$ decreases rapidly with $T$ --- the step from $T=4$ to $T=5$ only improves the classifier's performance very slightly.
+
+
+\begin{figure}[htb]
+	\centering
+	\input{knnresults.tex}%
+	\caption{Accuracy of the KNN classifier at various values of $T$, for $K$ from 1 to 100. A classification is considered correct if the ground truth class appears in the top $T$ answers.}
+	\label{fig:knnresults}
+\end{figure}
