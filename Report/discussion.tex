@@ -1,5 +1,17 @@
 \section{Discussion}
-Many of the issues we encountered had to do with aspects that we initially did not expect would become problematic. One problem was the initially long time needed for the training of the Neural network, which could require multiple hours to complete. Although eventual improvements severely reduced the time needed, it still prevented us from performing exhaustive parameter tests early on. Despite this, we have proved that a neural network can classify images with a rate of accuracy far better than guessing, and in fact comparable with other efforts reported in the ImageClef 2012 results. SIFT and Bag of Words have proved to provide a good pre-processing strategy, given the favourable results.
+The methods described in this study were an attempt at a computationally simple, yet effective classifier of leaf images.
+As expected, the neural network performed at a higher accuracy than the relatively much simpler K-Nearest Neighbour classifier to which it was compared.
+This difference of almost 20 percentage points shows that the additional complexity of the neural network does pay off with a marked improvement in performance.
+Of course, the higher accuracy comes at the cost of much higher computational demands.
+For these classifiers to be trainable and usable on low-powered devices such as smartphones, it is imperative to keep their limitations in mind.
+Which of these classifiers is considered superior depends on how much emphasis is placed on computational efficiency versus classification accuracy.
+However, when we limit ourselves to desktop computers, the more powerful neural network is the obvious choice.
+
+Further improvement of the classifier's performance may be found in a more careful feature extraction process.
+Previous work has shown that the inclusion of shape context, in which a set of points on the edge of the leaf is selected, and each point's relative distance to all other points is recorded, can improve classifier performance~\cite{Wang2011}.
+In addition, it may be beneficial to take into account higher order relationships that may exist between the visual words in the leaf images~\cite{Huan2015}.
+
+Many of the issues that were encountered in this study had to do with aspects that we initially did not expect would become problematic. One problem was the initially long time needed for the training of the neural network, which could require multiple hours to complete. Although eventual improvements severely reduced the time needed, it still prevented us from performing exhaustive parameter tests early on. Despite this, we have proved that a neural network can classify images with a rate of accuracy far better than guessing, and in fact comparable with other efforts reported in the ImageClef 2012 results~\cite{imageclef2012}. SIFT and Bag of Words have proved to provide a good pre-processing strategy, given the favourable results.
 
 Aside from the details of the implementation, we also encountered unexpected decisions we had to make; those regarding the criteria for a successful classification for example, or the nature of the input. The latter point involved the choice of what types of images to include; just scans, or natural photographs as well?
 
